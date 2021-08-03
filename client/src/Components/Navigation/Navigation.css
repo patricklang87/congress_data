@@ -1,0 +1,28 @@
+
+.navBar {
+    background-color: rgb(110, 1, 1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: ridge 5px rgb(179, 0, 30);
+    color: white;
+    z-index: 5;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.navBar a, .navBar span {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.navBar a:hover, .navBar span:hover {
+    color: rgb(179, 0, 30);
+}
