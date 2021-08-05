@@ -1,0 +1,54 @@
+.legislatorChamberDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.legislatorSearchCard {
+    width: 250px;
+    height: auto;
+    display: flex;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: left;
+    transition: width 500ms ease-in-out, opacity 500ms 100ms;
+}
+
+.legislatorSearchCard img {
+    width: 75px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.legislatorSearchCard p {
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+
+}
+
+.searchCardText {
+    width: 175px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.legislatorSearchCard strong,
+.legislatorSearchCard i
+ {
+    margin: 0;
+    padding: 0;
+
+}
+
+.searchCardButtons {
+    text-align: right;
+}
+
+.searchCardButtons button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}

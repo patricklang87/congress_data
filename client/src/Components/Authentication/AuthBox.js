@@ -18,11 +18,11 @@ export default function AuthBox() {
 
     return toggleTransition((style, item) => item ? (
         <animated.div style={style}>
-                <Login setShowingLogin={setShowingLogin} />
+                <Login className="authBox" setShowingLogin={setShowingLogin} />
         </animated.div>
     ) : (
         <animated.div style={style} >
-            <Register setShowingLogin={setShowingLogin} />
+            <Register className="authBox" setShowingLogin={setShowingLogin} />
         </animated.div>
     ))
     // (

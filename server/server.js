@@ -14,6 +14,8 @@ const bodyParser = require('body-parser');
 
 let router = express.Router();
 const auth = require('./routes/auth');
+const district = require('./routes/district');
+const propublica = require('./routes/propublica');
 
 const app = express();
 
@@ -53,7 +55,8 @@ require('./passport-config')(passport);
 //ROUTES
 
 app.use('/auth', auth);
-
+app.use('/district', district);
+app.use('/propublica', propublica);
 
 
 app.listen(4000, () => {

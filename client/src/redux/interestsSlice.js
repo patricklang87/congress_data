@@ -4,7 +4,10 @@ const interestsSlice = createSlice({
     name: "interests",
     initialState: {
         subjects: [],
-        legislators: []
+        legislators: {
+            senators: [],
+            congresspeople: []
+        }
     },
     reducers: {
         addSubject: (state, action) => {
@@ -13,11 +16,17 @@ const interestsSlice = createSlice({
         removeSubject: (state, action) => {
             state.subjects = state.subjects.filter(item => item !== action.payload);
         },
-        addLegislator: (state, action) => {
-            state.legislators = [...state.legislators, action.payload]
+        trackSenator: (state, action) => {
+            state.legislators.senators = [...state.legislators.senators, action.payload]
         },
-        removeLegislator: (state, action) => {
-            state.legislators = state.legislators.filter(item => item.name !== action.payload);
+        removeSenator: (state, action) => {
+            state.legislators.senators = state.legislators.senators.filter(item => item.id !== action.payload.id);
+        },
+        trackCongressperson: (state, action) => {
+            state.legislators.congresspeople = [...state.legislators.congresspeople, action.payload]
+        },
+        removeCongressperson: (state, action) => {
+            state.legislators.congresspeople = state.legislators.congresspeople.filter(item => item.id !== action.payload.id);
         },
         loadInterests: (state, action) => {
             state.legislators = action.payload.legislators;
@@ -30,5 +39,5 @@ const interestsSlice = createSlice({
     }
 });
 
-export const { addSubject, removeSubject, addLegislator, removeLegislator, loadInterests, removeInterests } = interestsSlice.actions;
+export const { addSubject, removeSubject, trackSenator, removeSenator, trackCongressperson, removeCongressperson, loadInterests, removeInterests } = interestsSlice.actions;
 export default interestsSlice.reducer

@@ -1,15 +1,19 @@
 import React from 'react';
 import './Dashboard.css';
+import DashNav from './DashNav';
 import { useDispatch, useSelector } from 'react-redux';
+import LegislatorsList from '../SeachComponents/FindLegislators/LegislatorsList';
 
 
 export default function Dashboard() {
 
     return (
-        <div className="Dashboard">
-            <h1>Dashboard</h1>
+        <div className="Dashboard">     
+        <div className="dashnav">
+            <DashNav />
+        </div>      
             <div className="dash-table">
-                <h1>Hi</h1>
+                <LegislatorsList />
             </div>
         </div>
     )

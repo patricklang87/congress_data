@@ -1,8 +1,44 @@
 .Dashboard {
-    padding-top: 5px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    width: 100%;
+}
+
+.dashNavBar {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    width: 200px;
+    border-right: red 1px solid;
+    text-align: left;
+    padding-left: 20px;
+    height: 100%;
+    z-index: 0;
+    grid-column: 0 / span 2;
+}
+
+.dashNavBar p {
+    margin: 0;
+}
+
+.dashNavOptions {
+    transition: height 250ms ease-in-out, opacity 250ms 100ms;
+    margin-bottom: 20px;
+}
+
+.dashNavOptions p {
 }
 
 .dash-table {
-    background-color: lightskyblue;
-    height: 700px;
+    background-color: rgb(210, 236, 252);
+    min-height: 700px;
+    grid-column: 2 / span 11;
+}
+
+.SearchLegislators {
+
+}
+
+.SearchLegislators p {
+
 }
