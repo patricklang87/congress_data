@@ -6,19 +6,16 @@ import axios from 'axios';
 
 export default function Register({ setShowingLogin }) {
     const dispatch = useDispatch();
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const register = async () => {
         const data = {
-            username,
             email,
             password
         }
         try {
             let response = await axios.post('http://localhost:4000/auth/register', data);
-            console.log(response);
             let newUserEmail = await response.data.email;
             dispatch(setRecentUserEmail(newUserEmail));
             setShowingLogin(true);
@@ -30,9 +27,6 @@ export default function Register({ setShowingLogin }) {
     return (
     <div>
         <h1>Register</h1>
-        <div>
-            <input type="text" onChange={(e) => {setUsername(e.target.value)}} placeholder="Username" id="registerUsername" name="registerUsername" required />
-        </div>
         <div>
             <input type="email" onChange={(e) => {setEmail(e.target.value)}} placeholder="Email" id="registerEmail" name="registerEmail" required />
         </div>

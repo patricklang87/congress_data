@@ -9,6 +9,7 @@ const searchSlice = createSlice({
         nameSearchTerm: '',
         stateSearchTerm: '',
         districtSearchTerm: '',
+        subjectSearches: []
     },
     reducers: {
         loadPotentialSenators: (state, action) => {
@@ -56,9 +57,12 @@ const searchSlice = createSlice({
             state.nameSearchTerm = '';
             state.stateSearchTerm = '';
             state.districtSearchTerm = '';
+        },
+        addSubjectSearch: (state, action) => {
+            state.subjectSearch = [action.payload, ...state.subjectSearch]
         }
     }
 });
 
-export const { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson, loadPotentialSubjects, removePotentialSubject, updateSearchTerms, clearSearchTerms } = searchSlice.actions;
+export const { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson, loadPotentialSubjects, removePotentialSubject, updateSearchTerms, clearSearchTerms, addSubjectSearch } = searchSlice.actions;
 export default searchSlice.reducer;

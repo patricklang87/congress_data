@@ -2,52 +2,37 @@ import React, {useState} from 'react';
 import NO_PIC from '../../../images/noPic.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePotentialSenator, removePotentialCongressperson } from '../../../redux/searchSlice';
-import { trackSenator, trackCongressperson } from '../../../redux/interestsSlice';
+import { removeSenator, removeCongressperson } from '../../../redux/interestsSlice';
 import axios from 'axios';
 
 
-export default function LegisSearchCard({ item }) {
+export default function MyLegisCard({ item }) {
     const [disappearing, setDisappearing] = useState(false);
     const dispatch = useDispatch();
 
-    let tracked = false;
-    const trackedLegislators = useSelector(state => state.interests.legislators);
-    let trackedSenatorIds = trackedLegislators.senators.map(item => item.id);
-    let trackedCongresspeopleIds = trackedLegislators.congresspeople.map(item => item.id);
-    if (trackedSenatorIds.includes(item.id)) tracked = true;
-    if (trackedCongresspeopleIds.includes(item.id)) tracked = true;
+    const stopTracking = () => {
+        if (item.short_title === "Rep.") dispatch(removeCongressperson(item));
+        if (item.short_title === "Sen." ) dispatch(removeSenator(item));
 
-    const handleTrack = async (i) => {
-        if (item.short_title === "Rep.") dispatch(trackCongressperson(i));
-        if (item.short_title === "Sen." ) dispatch(trackSenator(i));
-
-        try {
-            axios({
-                method: "GET",
-                withCredentials: true,
-                url: "http://localhost:4000/userData/data"
-            }).then((res) => {
-                console.log(res.data);
-                //here you will patch this info into mongoose
-            });
-        } catch (err) {
-            console.log(err)
-        }
+        // try {
+        //     axios({
+        //         method: "GET",
+        //         withCredentials: true,
+        //         url: "http://localhost:4000/userData/data"
+        //     }).then((res) => {
+        //         console.log(res.data);
+        //         //here you will patch this info into mongoose
+        //     });
+        // } catch (err) {
+        //     console.log(err)
+        // }
     }
 
 
 
-    const handleRemove = () => {
+    const handleStopTracking = () => {
         setDisappearing(true);
-        setTimeout(removeLegislator, 500);
-    }
-
-    const removeLegislator = () => {
-        let removalFunction;
-        if (item.short_title === "Rep.") removalFunction = removePotentialCongressperson;
-        if (item.short_title === "Sen." ) removalFunction = removePotentialSenator;
-        dispatch(removalFunction(item));
-        setDisappearing(false);
+        setTimeout(stopTracking, 500);
     }
 
     const handleImgError = (image) => {
@@ -91,9 +76,7 @@ export default function LegisSearchCard({ item }) {
                         <p><small><i>{item.party}, {item.state}{item.district && "-"}{item.district}</i></small></p>
                     </div>
                     <div className="searchCardButtons" style={{ textAlign: "right"}}>
-                        {tracked ? <span>Tracking &#9745; </span> : <button onClick={() => handleTrack(item)}>Track</button>}
-                        
-                        <button onClick={handleRemove}><strong>X</strong></button>
+                        <button onClick={handleStopTracking}><strong>Stop Tracking</strong></button>
                     </div> 
                 </div> 
   

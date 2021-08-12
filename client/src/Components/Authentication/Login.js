@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAuthorized, setCurrentUser } from '../../redux/authSlice';
+import { setCurrentUser } from '../../redux/authSlice';
+import { loadInterests } from '../../redux/interestsSlice';
 import axios from 'axios';
 
 export default function Login({ setShowingLogin }) {
@@ -23,11 +24,10 @@ export default function Login({ setShowingLogin }) {
         }
         try {
             let response = await axios.post('http://localhost:4000/auth/login', data);
+            console.log("login response:", response)
             let currentUserData = await response.data;
-            console.log(currentUserData);
-            dispatch(setAuthorized(true));
             dispatch(setCurrentUser(currentUserData));
-            history.push('/');
+            history.push('/dashboard');
         } catch (err) {
             console.log(err)
         }    

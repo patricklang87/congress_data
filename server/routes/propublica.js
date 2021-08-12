@@ -35,7 +35,6 @@ router.get('/info', async (req, res, next) => {
 
 router.get('/specificBill', async (req, res, next) => {
     const url = req.query[0];
-    console.log('url', url);
 
     const getBill = async () => {
         const response = await axios.get(url, {
@@ -83,7 +82,6 @@ router.get('/bills', async (req, res, next) => {
 });
 
 const fetchMemberData = async () => {
-    console.log('fetching member data');
     try {
         const houseResponse = await axios.get('https://api.propublica.org/congress/v1/117/house/members.json', {
             headers: {"X-API-Key": PROPUBLICA_KEY}

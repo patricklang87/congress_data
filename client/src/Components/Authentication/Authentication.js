@@ -8,7 +8,6 @@ export default function Authentication() {
     let currentUser = useSelector(state => state.auth.currentUser);
     
     if (currentUser) {
-        console.log("Already Authorized")
         return <Redirect to="/dashboard" />
     }
 

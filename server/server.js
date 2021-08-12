@@ -6,50 +6,62 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
-// const passportLocal = require('passport-local').Strategy();
-const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
-const bodyParser = require('body-parser');
 
-let router = express.Router();
-const auth = require('./routes/auth');
-const district = require('./routes/district');
-const propublica = require('./routes/propublica');
+// let router = express.Router();
+// const auth = require('./routes/auth');
+// const district = require('./routes/district');
+// const propublica = require('./routes/propublica');
+// const userData = require('./routes/userData');
+// const connection = require('./config/database');
+
+const MongoStore = require('connect-mongo');
+
+require('./config/passport');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+
 //CONNECT TO DB
-mongoose.connect(
-    process.env.DB_CONNECT,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    },
-    () => {console.log("Mongoose is Connected")}
-);
+const sessionStore = MongoStore.create({
+    mongoUrl: process.env.DB_CONNECT,
+    collection: 'sessions'
+});
 
-//MIDDLEWARES
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
     cors({
         origin: "http://localhost:3000",
         credentials: true
     })
 );
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        resave: true,
-        saveUninitialized: true
-    })
-);
-app.use(cookieParser(process.env.SESSION_SECRET));
+
+
+require('./config/passport');
+
 app.use(passport.initialize());
 app.use(passport.session());
-require('./passport-config')(passport);
+
+app.use((req, res, next) => {
+    console.log("session", req.session);
+    console.log('user', req.user);
+    next();
+})
+
 
 
 //ROUTES
@@ -57,6 +69,8 @@ require('./passport-config')(passport);
 app.use('/auth', auth);
 app.use('/district', district);
 app.use('/propublica', propublica);
+app.use('/userData', userData);
+
 
 
 app.listen(4000, () => {

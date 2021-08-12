@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addPotentialLegislator, updateSearchTerms, clearSearchTerms } from '../../redux/searchSlice';
+import { addPotentialLegislator, updateSearchTerms, clearSearchTerms } from '../../../redux/searchSlice';
 import axios from 'axios';
 
 
@@ -21,8 +21,6 @@ export default function SearchLegislators() {
     }
 
     const handleSubmit = () => {
-       
-        console.log(address, city, state, zip);
         const data = { address, city, state, zip };
         axios.get('http://localhost:4000/district/legislators', { params: data })
             .then(response => {
@@ -34,11 +32,9 @@ export default function SearchLegislators() {
                 for (let div of divisions) {
                     if (div.length > division.length) division = div;
                 }
-                console.log("divisions: ", divisions);
                 let truncDivision = division.substring(24).split('/');
                 const state = truncDivision[0].substring(6);
                 const district = truncDivision[1].substring(3);
-                console.log(state, district);
                 dispatch(clearSearchTerms());
                 dispatch(updateSearchTerms({field: "state", value: state.toUpperCase()}));
                 dispatch(updateSearchTerms({field: "district", value: district}));
@@ -75,18 +71,40 @@ export default function SearchLegislators() {
         }
     }
 
+    ///Change visibility for get district option
 
+    const [navVisible, setNavVisible] = useState(false);
+
+    const toggleNavVisible = () => {
+        let newToggleValue = !navVisible;
+        setNavVisible(newToggleValue);
+    }
+
+    const notVisible = {
+        height: "0px",
+        opacity: 0,
+        overflow: "hidden"
+    }
+
+    const visible = {
+        height: "140px",
+        opacity: 1
+    }
 
     return (
-        <div className="getDistrict"> 
-            <p><strong>Search Districts</strong></p>
-            <input onChange={(e) => handleChange(e)} value={address} placeholder="Street Address" name="address" type="text" /> <br />
-            <input onChange={(e) => handleChange(e)} value={city} placeholder="City" name="city" type="text" /> <br />
-            <input onChange={(e) => handleChange(e)} value={state} placeholder="State" name="state" type="text" /> <br />
-            <input onChange={(e) => handleChange(e)} value={zip} placeholder="Zip" name="zip" type="text" /> <br />
-            <button onClick={() => handleUseCurrentLocation()}>Use Current Location</button> <br />
-            <button onClick={handleSubmit}>Find District</button>
-            <button onClick={handleClear}>Clear</button>    
+        <div>
+            <div onClick={toggleNavVisible}>
+                <span style={{display: "inline"}} >&#10148;</span><span><strong> Find a District</strong></span>
+            </div>
+            <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
+                <input onChange={(e) => handleChange(e)} value={address} placeholder="Street Address" name="address" type="text" /> <br />
+                <input onChange={(e) => handleChange(e)} value={city} placeholder="City" name="city" type="text" /> <br />
+                <input onChange={(e) => handleChange(e)} value={state} placeholder="State" name="state" type="text" /> <br />
+                <input onChange={(e) => handleChange(e)} value={zip} placeholder="Zip" name="zip" type="text" /> <br />
+                <button onClick={() => handleUseCurrentLocation()}>Use Current Location</button> <br />
+                <button onClick={handleSubmit}>Find District</button>
+                <button onClick={handleClear}>Clear</button>    
+            </div>
         </div>
     );
 }

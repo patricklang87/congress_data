@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
-import SearchLegislators from './SearchLegislators';
+import { useDispatch, useSelector } from 'react-redux';
+import SearchLegislators from './SearchLegisDiv/SearchLegislators';
+import { setDashFolder } from '../../redux/viewsSlice';
 
 export default function DashNav() {
+    const dispatch = useDispatch();
+    const currentDashFolder = useSelector(state => state.views.dashFolder);
+    
+    //change dash folder
+
+    const handleSelect = (item) => {
+        dispatch(setDashFolder(item))
+    }
+
+
+    //handle navigation visibility
     const [navVisible, setNavVisible] = useState(true);
 
     const toggleNavVisible = () => {
@@ -12,20 +25,19 @@ export default function DashNav() {
     const notVisible = {
         height: "0px",
         opacity: 0,
-        overflow: "hidden",
-        // transition: "height 250ms ease-in-out"
+        overflow: "hidden"
     }
 
     const visible = {
         height: "110px",
-        opacity: 1,
-        // transition: "height 250ms ease-in-out"
+        opacity: 1
     }
 
     return (
         <div className="dashNavBar">
             <div>
                 <h1><strong>Dashboard</strong></h1>
+                <h2>{currentDashFolder}</h2>
             </div>    
             <div>
                 <div>
@@ -35,13 +47,13 @@ export default function DashNav() {
                 </div>
                 <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
                     <p>Current</p>
-                    <p>My Legislators</p>
+                    <p onClick={() => handleSelect('My Legislators')} >My Legislators</p>
                     <p>My Subjects</p>
-                    <p>Find Legislators</p>
+                    <p onClick={() => handleSelect('Find Legislators')} >Find Legislators</p>
                     <p>Find Subjects</p>
                 </div>
                 <div>
-                    <SearchLegislators />
+                    {(currentDashFolder === 'Find Legislators') && <SearchLegislators />}
                 </div>
             </div>
         </div>

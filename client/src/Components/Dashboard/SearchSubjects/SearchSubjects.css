@@ -1,0 +1,8 @@
+.listTerm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.listTerm p {
+    display: inline;
+}

@@ -1,18 +1,29 @@
+.legislatorSearchDisplay {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .legislatorChamberDisplay {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: left;
     width: 100%;
+}
+
+.legisListFullWidth {
+    grid-column: 1 / span 2;
 }
 
 .legislatorSearchCard {
     width: 250px;
     height: auto;
     display: flex;
-    margin: 10px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
     text-align: left;
-    transition: width 500ms ease-in-out, opacity 500ms 100ms;
+    transition: width 400ms ease-in-out, opacity 300ms, margin 400ms ease-in-out;
 }
 
 .legislatorSearchCard img {

@@ -1,19 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import SearchWithinLegislators from './SearchWithinLegislators';
-import LegisSearchCard from './LegisSearchCard';
-// import SearchLegislators from './SearchLegislators';
-// import TrackAllDismissAll from './TrackAllDismissAll';
-import './LegislatorsList.css';
+import MyLegisCard from './MyLegisCard';
 import { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson } from '../../../redux/interestsSlice';
 
 
-export default function LegislatorsList() {
+export default function MyLegislators() {
     const nameSearchTerm = useSelector(state => state.search.nameSearchTerm);
     const stateSearchTerm = useSelector(state => state.search.stateSearchTerm);
     const districtSearchTerm = useSelector(state => state.search.districtSearchTerm);
-    const house = useSelector(state => state.search.congresspeople);
-    const senate = useSelector(state => state.search.senators);
+    const house = useSelector(state => state.interests.legislators.congresspeople);
+    const senate = useSelector(state => state.interests.legislators.senators);
     const legislatorView = useSelector(state => state.views.legislatorView);
     
 
@@ -46,7 +42,7 @@ export default function LegislatorsList() {
     });
 
     const houseDisplay = searchedHouse.map(item => {
-        return <LegisSearchCard item={item} />
+        return <MyLegisCard key={item.id + "my"} item={item} />
     });
 
     const searchedSenate = senate.filter(item => {
@@ -64,7 +60,7 @@ export default function LegislatorsList() {
     })
 
     const senateDisplay = searchedSenate.map(item => {
-        return <LegisSearchCard key={item.id + "search"} item={item} />
+        return <MyLegisCard key={item.id + "my"} item={item} />
     });
 
 
