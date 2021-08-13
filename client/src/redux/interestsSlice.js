@@ -29,8 +29,8 @@ const interestsSlice = createSlice({
             state.legislators.congresspeople = state.legislators.congresspeople.filter(item => item.id !== action.payload.id);
         },
         loadInterests: (state, action) => {
-            state.legislators = action.payload.interests.legislators;
-            state.subjects = action.payload.interests.subjects;
+            state.legislators = action.payload.legislators;
+            state.subjects = action.payload.subjects;
         },
         removeInterests: (state) => {
             state.legislators = [];

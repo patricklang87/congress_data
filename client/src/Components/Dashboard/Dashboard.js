@@ -7,9 +7,16 @@ import MyLegislators from '../MyComponents/MyLegislators/MyLegislators';
 import axios from 'axios';
 
 
-const isAuth = async () => {
-    let res = await axios.get('http://localhost:4000/auth/protected-route');
-    console.log(res);
+const isAuth = () => {
+    axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/protected-route"
+    }).then((res) => {
+        console.log(res);
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
 export default function Dashboard() {

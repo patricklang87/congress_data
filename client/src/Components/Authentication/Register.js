@@ -1,37 +1,45 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setRecentUserEmail } from '../../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRecentUserEmail, setAuthMessage } from '../../redux/authSlice';
 
 import axios from 'axios';
 
 export default function Register({ setShowingLogin }) {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
+    const authMessage = useSelector(state => state.auth.authMessage);
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const register = async () => {
-        const data = {
-            email,
-            password
-        }
-        try {
-            let response = await axios.post('http://localhost:4000/auth/register', data);
-            let newUserEmail = await response.data.email;
-            dispatch(setRecentUserEmail(newUserEmail));
-            setShowingLogin(true);
-        } catch (err) {
-            console.log(err);
-        }   
+    const register = () => {
+        axios({
+            method: "POST",
+            data: {
+              username,
+              password
+            },
+            withCredentials: true,
+            url: "http://localhost:4000/register"
+          }).then((res) => {
+            console.log(res.data);
+            dispatch(setRecentUserEmail(res.data.email));
+            dispatch(setAuthMessage(res.data.msg));
+            if (res.data.msg === "New User Created!") {
+                setShowingLogin(true);
+            }
+        });
     }
 
     return (
     <div>
         <h1>Register</h1>
         <div>
-            <input type="email" onChange={(e) => {setEmail(e.target.value)}} placeholder="Email" id="registerEmail" name="registerEmail" required />
+            <input type="text" onChange={(e) => {setUsername(e.target.value)}} placeholder="Email" required />
         </div>
         <div>
             <input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="Password" id="registerPassword" name="registerPassword" required />
+        </div>
+        <div>
+            {(authMessage) && <p>{authMessage}</p>}
         </div>
         <div>
             <button onClick={register} >Register</button>

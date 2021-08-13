@@ -5,7 +5,7 @@ import Logout from './Logout';
 import './Navigation.css';
 
 export default function Navigation() {
-    const currentUser = useSelector(state => state.auth.currentUser);
+    const currentUserEmail = useSelector(state => state.auth.currentUserEmail);
     
 
     return (
@@ -15,9 +15,9 @@ export default function Navigation() {
                 
             </div>
             <nav>
-                {currentUser ? <span><i>Welcome, <strong>{currentUser}</strong>!</i></span> : <span>Logged Out</span>}
+                {currentUserEmail ? <span><i>Welcome, <strong>{currentUserEmail}</strong>!</i></span> : <span>Logged Out</span>}
                 <Link to="/dashboard">Dashboard</Link>
-                {currentUser ? <Logout /> : <Link to="/">Log In</Link>}
+                {currentUserEmail ? <Logout /> : <Link to="/">Log In</Link>}
             </nav>   
         </div>
     )

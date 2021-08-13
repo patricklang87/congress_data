@@ -6,6 +6,7 @@ import './Authentication.css';
 
 export default function Authentication() {
     let currentUser = useSelector(state => state.auth.currentUser);
+    const authMessage = useSelector(state => state.auth.authMessage);
     
     if (currentUser) {
         return <Redirect to="/dashboard" />
