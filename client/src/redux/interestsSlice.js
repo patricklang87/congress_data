@@ -33,7 +33,7 @@ const interestsSlice = createSlice({
             state.subjects = action.payload.subjects;
         },
         removeInterests: (state) => {
-            state.legislators = [];
+            state.legislators = {senators: [], congresspeople: []};
             state.subjects = [];
         }
     }

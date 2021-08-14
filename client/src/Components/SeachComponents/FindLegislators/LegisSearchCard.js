@@ -18,17 +18,17 @@ export default function LegisSearchCard({ item }) {
     if (trackedCongresspeopleIds.includes(item.id)) tracked = true;
 
     const handleTrack = async (i) => {
-        if (item.short_title === "Rep.") dispatch(trackCongressperson(i));
-        if (item.short_title === "Sen." ) dispatch(trackSenator(i));
-
+        if (i.short_title === "Rep.") dispatch(trackCongressperson(i));
+        if (i.short_title === "Sen.") dispatch(trackSenator(i));
+        
         try {
             axios({
-                method: "GET",
+                method: "PATCH",
+                data: i,
                 withCredentials: true,
-                url: "http://localhost:4000/userData/data"
+                url: `http://localhost:4000/userData/trackLegislator`
             }).then((res) => {
                 console.log(res.data);
-                //here you will patch this info into mongoose
             });
         } catch (err) {
             console.log(err)

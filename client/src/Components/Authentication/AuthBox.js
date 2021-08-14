@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Login from './Login';
 import Register from './Register';
-import { useTransition, animated, config } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 
 
 export default function AuthBox() {

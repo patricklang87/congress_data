@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addPotentialLegislator, updateSearchTerms, clearSearchTerms } from '../../../redux/searchSlice';
+import { updateSearchTerms, clearSearchTerms } from '../../../redux/searchSlice';
 import axios from 'axios';
 
 
@@ -25,7 +25,6 @@ export default function SearchLegislators() {
         axios.get('http://localhost:4000/district/legislators', { params: data })
             .then(response => {
                 console.log(response);
-                let officials = response.data.officials;
                 const divisionsData = response.data.divisions;
                 let divisions = Object.keys(divisionsData);
                 let division = '';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSearchTerms, clearSearchTerms } from '../../../redux/searchSlice';
 import axios from 'axios';
-import { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson } from '../../../redux/searchSlice';
+import { loadPotentialSenators, loadPotentialCongresspeople  } from '../../../redux/searchSlice';
 
 
 export default function SearchWithinLegisList() {

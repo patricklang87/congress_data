@@ -18,7 +18,7 @@ export default function Register({ setShowingLogin }) {
               password
             },
             withCredentials: true,
-            url: "http://localhost:4000/register"
+            url: "http://localhost:4000/auth/register"
           }).then((res) => {
             console.log(res.data);
             dispatch(setRecentUserEmail(res.data.email));

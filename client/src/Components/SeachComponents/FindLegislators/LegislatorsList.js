@@ -1,11 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import SearchWithinLegislators from './SearchWithinLegislators';
 import LegisSearchCard from './LegisSearchCard';
-// import SearchLegislators from './SearchLegislators';
-// import TrackAllDismissAll from './TrackAllDismissAll';
 import './LegislatorsList.css';
-import { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson } from '../../../redux/interestsSlice';
+
 
 
 export default function LegislatorsList() {
@@ -53,7 +50,6 @@ export default function LegislatorsList() {
         let fits = false;
         let searchTermComp1 = nameSearchTerm.split(' ');
         for (let comp of searchTermComp1) {
-            console.log("component:", comp);
             if (item.first_name.toLowerCase().includes(comp.toLowerCase()) || item.last_name.toLowerCase().includes(comp.toLowerCase()) || item.state.toLowerCase().includes(comp.toLowerCase())) {
                 fits = true;
             }

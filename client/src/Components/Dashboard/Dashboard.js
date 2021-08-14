@@ -1,7 +1,7 @@
 import React from 'react';
 import './Dashboard.css';
 import DashNav from './DashNav';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LegislatorsList from '../SeachComponents/FindLegislators/LegislatorsList';
 import MyLegislators from '../MyComponents/MyLegislators/MyLegislators';
 import axios from 'axios';
@@ -11,7 +11,7 @@ const isAuth = () => {
     axios({
         method: "GET",
         withCredentials: true,
-        url: "http://localhost:4000/protected-route"
+        url: "http://localhost:4000/auth/protected-route"
     }).then((res) => {
         console.log(res);
     }).catch((err) => {

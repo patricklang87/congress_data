@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import NO_PIC from '../../../images/noPic.jpg';
-import { useDispatch, useSelector } from 'react-redux';
-import { removePotentialSenator, removePotentialCongressperson } from '../../../redux/searchSlice';
+import { useDispatch } from 'react-redux';
 import { removeSenator, removeCongressperson } from '../../../redux/interestsSlice';
 import axios from 'axios';
 
@@ -14,18 +13,19 @@ export default function MyLegisCard({ item }) {
         if (item.short_title === "Rep.") dispatch(removeCongressperson(item));
         if (item.short_title === "Sen." ) dispatch(removeSenator(item));
 
-        // try {
-        //     axios({
-        //         method: "GET",
-        //         withCredentials: true,
-        //         url: "http://localhost:4000/userData/data"
-        //     }).then((res) => {
-        //         console.log(res.data);
-        //         //here you will patch this info into mongoose
-        //     });
-        // } catch (err) {
-        //     console.log(err)
-        // }
+        try {
+            axios({
+                method: "DELETE",
+                data: item,
+                withCredentials: true,
+                url: "http://localhost:4000/userData/untrackLegislator"
+            }).then((res) => {
+                console.log(res.data);
+                //here you will patch this info into mongoose
+            });
+        } catch (err) {
+            console.log(err)
+        }
     }
 
 
@@ -33,6 +33,7 @@ export default function MyLegisCard({ item }) {
     const handleStopTracking = () => {
         setDisappearing(true);
         setTimeout(stopTracking, 500);
+        stopTracking();
     }
 
     const handleImgError = (image) => {

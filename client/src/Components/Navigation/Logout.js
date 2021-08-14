@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import { setRecentUserEmail, setCurrentUser, setAuthMessage } from '../../redux/authSlice';
 import { removeInterests } from '../../redux/interestsSlice';
 import axios from 'axios';
@@ -17,7 +16,7 @@ export default function Logout() {
         axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/logout"
+            url: "http://localhost:4000/auth/logout"
         }).then((res) => {
             dispatch(setRecentUserEmail(currentUserEmail));
             dispatch(setCurrentUser(null));

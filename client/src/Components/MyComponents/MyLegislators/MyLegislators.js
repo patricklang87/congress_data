@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import MyLegisCard from './MyLegisCard';
-import { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson } from '../../../redux/interestsSlice';
 
 
 export default function MyLegislators() {

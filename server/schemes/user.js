@@ -12,7 +12,7 @@ const user = new mongoose.Schema({
     },
     interests: {
         type: Object,
-        default: {subjects: [], legislators: []}
+        default: {subjects: [], legislators: {senators: [], congresspeople: []}}
     }
 });
 

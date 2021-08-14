@@ -1,12 +1,35 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import AuthBox from './AuthBox';
+import axios from 'axios';
+import { setCurrentUser } from '../../redux/authSlice';
+import { loadInterests } from '../../redux/interestsSlice';
 import './Authentication.css';
 
 export default function Authentication() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+
+    useEffect(() => {
+        axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:4000/userData/data"
+          }).then((res) => {
+            if (res.data.username && res.data.interests) {
+                dispatch(setCurrentUser(res.data.username));
+                dispatch(loadInterests(res.data.interests));
+                history.push('/dashboard');
+            }
+          }).catch((err) => {
+              console.log(err);
+          }); 
+    }, [dispatch, history]);
+
+
     let currentUser = useSelector(state => state.auth.currentUser);
-    const authMessage = useSelector(state => state.auth.authMessage);
     
     if (currentUser) {
         return <Redirect to="/dashboard" />

@@ -24,11 +24,13 @@ export default function Login({ setShowingLogin }) {
             method: "POST",
             data: data,
             withCredentials: true,
-            url: "http://localhost:4000/login"
+            url: "http://localhost:4000/auth/login"
           }).then((res) => {
             console.log(res);
-            dispatch(setCurrentUser(res.data.username));
-            dispatch(loadInterests(res.data.interests));
+            if (res.data.username && res.data.interests) {
+                dispatch(setCurrentUser(res.data.username));
+                dispatch(loadInterests(res.data.interests));
+            }
             dispatch(setAuthMessage(res.data.msg));
             if (res.data.msg === "Login Successful!") {
                 history.push('/dashboard');
