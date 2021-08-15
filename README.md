@@ -56,5 +56,5 @@ To run the project locally:
 
 **Patrick Lang**
 
-- [Profile](https://github.com/rohit19060 "Patrick Lang")
+- [Profile](https://github.com/patricklang87 "Patrick Lang")
 - [Email](mailto:patricklang87@gmail.com?subject=LegisTracker "LegisTracker")
