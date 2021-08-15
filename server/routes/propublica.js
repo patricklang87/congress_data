@@ -48,7 +48,7 @@ router.get('/specificBill', async (req, res, next) => {
     res.send(billData);
 })
 
-router.get('/topics', async (req, res, next) => {
+router.get('/subjects', async (req, res, next) => {
     const keyword = req.query[0];
     const url = `https://api.propublica.org/congress/v1/bills/subjects/search.json?query=${keyword}`;
     const getTopics = async () => {

@@ -9,7 +9,8 @@ const searchSlice = createSlice({
         nameSearchTerm: '',
         stateSearchTerm: '',
         districtSearchTerm: '',
-        subjectSearches: []
+        subjectSearches: [],
+        searchInSubjectsTerm: ''
     },
     reducers: {
         loadPotentialSenators: (state, action) => {
@@ -41,12 +42,15 @@ const searchSlice = createSlice({
             let newSubjects = action.payload.filter(item => {
                 return !currentSubjectNames.includes(item.name);
             })
-            state.topics = [...state.topics, ...newSubjects];
+            state.subjects = [...state.subjects, ...newSubjects];
         },
         removePotentialSubject: (state, action) => {
-            const newList = state.topics.filter(item => {
+            const newList = state.subjects.filter(item => {
                 return (item.name !== action.payload.name)});
-            state.topics = newList;
+            state.subjects = newList;
+        },
+        clearPotentialSubjects: (state) => {
+            state.subjects = [];
         },
         updateSearchTerms: (state, action) => {
             if (action.payload.field === "name") state.nameSearchTerm = action.payload.value;
@@ -59,10 +63,19 @@ const searchSlice = createSlice({
             state.districtSearchTerm = '';
         },
         addSubjectSearch: (state, action) => {
-            state.subjectSearch = [action.payload, ...state.subjectSearch]
+            state.subjectSearches = [action.payload, ...state.subjectSearches];
+        },
+        removeSubjectSearch: (state, action) => {
+            const newList = state.subjectSearches.filter((item) => {
+                return item !== action.payload
+            });
+            state.subjectSearches = newList;
+        },
+        setSearchInSubjectsTerm: (state, action) => {
+            state.searchInSubjectsTerm = action.payload;
         }
     }
 });
 
-export const { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson, loadPotentialSubjects, removePotentialSubject, updateSearchTerms, clearSearchTerms, addSubjectSearch } = searchSlice.actions;
+export const { loadPotentialSenators, removePotentialSenator, loadPotentialCongresspeople, removePotentialCongressperson, loadPotentialSubjects, removePotentialSubject, updateSearchTerms, clearSearchTerms, addSubjectSearch, setSearchInSubjectsTerm, clearPotentialSubjects, removeSubjectSearch } = searchSlice.actions;
 export default searchSlice.reducer;

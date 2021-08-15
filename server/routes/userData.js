@@ -35,4 +35,18 @@ router.delete('/untrackLegislator', isAuth, async (req, res, next) => {
     console.log("response:", response);
 });
 
+router.patch('/trackSubject', isAuth, async (req, res, next) => {
+    console.log('patch reached', req.body);
+    const response = await User.updateOne({username: req.user.username}, { $addToSet : { 'interests.subjects': req.body }} );
+    
+    console.log("response:", response);
+});
+
+router.delete('/untrackSubject', isAuth, async (req, res, next) => {
+    console.log('untrack Subject', req.body);
+    const response = await User.updateOne({username: req.user.username}, { $pull: { 'interests.subjects': req.body } } );
+    
+    console.log("response:", response);
+});
+
 module.exports = router;

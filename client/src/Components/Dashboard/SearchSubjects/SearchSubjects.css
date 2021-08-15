@@ -1,8 +1,6 @@
 .listTerm {
     display: flex;
     justify-content: space-between;
-}
-
-.listTerm p {
-    display: inline;
+    margin-right: 5px;
+    margin-left: 5px;
 }
