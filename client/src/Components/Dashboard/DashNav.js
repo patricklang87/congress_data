@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchLegislators from './SearchLegisDiv/SearchLegislators';
-import SearchSubjects from './SearchSubjects/SearchSubjects'
+import SearchSubjects from './SearchSubjects/SearchSubjects';
+import MyLegisDiv from './MyLegisDiv/MyLegisDiv';
+import MySubjectsDiv from './MySubjectsDiv/MySubjectsDiv';
 import { setDashFolder } from '../../redux/viewsSlice';
 
 export default function DashNav() {
@@ -49,13 +51,15 @@ export default function DashNav() {
                 <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
                     <p>Current</p>
                     <p onClick={() => handleSelect('My Legislators')} >My Legislators</p>
-                    <p>My Subjects</p>
+                    <p onClick={() => handleSelect('My Subjects')}>My Subjects</p>
                     <p onClick={() => handleSelect('Find Legislators')} >Find Legislators</p>
                     <p onClick={() => handleSelect('Find Subjects')}>Find Subjects</p>
                 </div>
                 <div>
                     {(currentDashFolder === 'Find Legislators') && <SearchLegislators />}
                     {(currentDashFolder === 'Find Subjects') && <SearchSubjects />}
+                    {(currentDashFolder === 'My Legislators') && <MyLegisDiv />}
+                    {(currentDashFolder === 'My Subjects') && <MySubjectsDiv />}
                 </div>
             </div>
         </div>

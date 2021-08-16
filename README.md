@@ -4,7 +4,7 @@
 
 ## Links
 
-- [Repo](https://github.com/patricklang87/congress_data "LegisTracker Repo") -->
+- [Repo](https://github.com/patricklang87/congress_data "LegisTracker Repo") 
 
 
 ## Run the project

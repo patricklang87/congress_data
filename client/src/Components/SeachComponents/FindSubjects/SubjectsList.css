@@ -15,7 +15,7 @@
     padding: 10px;
     margin: 10px;
     border: 1px black solid;
-    transition: width 400ms ease-in-out, opacity 300ms, margin 400ms ease-in-out;
+    transition: width 400ms ease-in-out, opacity 300ms, margin 400ms ease-in-out, padding 400ms ease-in-out;
 }
 
 .subjectSearchCard p {

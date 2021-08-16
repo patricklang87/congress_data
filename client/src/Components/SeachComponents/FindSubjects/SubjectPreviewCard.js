@@ -10,13 +10,13 @@ export default function SubjectPreviewCard({ subj }) {
     const tracked = trackedSubjects.includes(subj.name);
     const [disappearing, setDisappearing] = useState(false);
 
-    const handleTrack = (subj) => {
-        dispatch(addSubject(subj));
-
+    const handleTrack = () => {
+        dispatch(addSubject(subj.name));
+        console.log('in handle track', subj.name)
         try {
             axios({
                 method: "PATCH",
-                data: subj,
+                data: {subject: subj.name},
                 withCredentials: true,
                 url: `http://localhost:4000/userData/trackSubject`
             }).then((res) => {
@@ -31,6 +31,7 @@ export default function SubjectPreviewCard({ subj }) {
         width: "0px",
         height: "46px",
         margin: "0px",
+        padding: '0px',
         opacity: 0
     }
 
@@ -38,6 +39,7 @@ export default function SubjectPreviewCard({ subj }) {
         width: "240px",
         height: "46px",
         margin: "10px",
+        padding: '10px',
         opacity: 1
     }
 

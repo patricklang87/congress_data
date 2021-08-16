@@ -3,41 +3,26 @@ import { useSelector } from 'react-redux';
 import MyLegisCard from './MyLegisCard';
 
 
+
 export default function MyLegislators() {
-    const nameSearchTerm = useSelector(state => state.search.nameSearchTerm);
-    const stateSearchTerm = useSelector(state => state.search.stateSearchTerm);
-    const districtSearchTerm = useSelector(state => state.search.districtSearchTerm);
+    // const nameSearchTerm = useSelector(state => state.search.nameSearchTerm);
+    // const stateSearchTerm = useSelector(state => state.search.stateSearchTerm);
+    // const districtSearchTerm = useSelector(state => state.search.districtSearchTerm);
     const house = useSelector(state => state.interests.legislators.congresspeople);
     const senate = useSelector(state => state.interests.legislators.senators);
     const legislatorView = useSelector(state => state.views.legislatorView);
+    const filterTerm = useSelector(state => state.interests.legislatorFilterTerm );
     
-
-// refactor this so that it searches names, states, and districts separately
-
-
-
     const searchedHouse = house.filter(item => {
         let fits = false;
-        let searchTermComp1 = nameSearchTerm.split(' ');
+        let searchTermComp1 = filterTerm.split(' ');
         for (let comp of searchTermComp1) {
             console.log("component:", comp);
-            if (item.first_name.toLowerCase().includes(nameSearchTerm.toLowerCase()) || item.last_name.toLowerCase().includes(nameSearchTerm.toLowerCase())) {
+            if (item.first_name.toLowerCase().includes(comp.toLowerCase()) || item.last_name.toLowerCase().includes(comp.toLowerCase()) || item.state.toLowerCase().includes(comp.toLowerCase()) || item.district.includes(comp)) {
                 fits = true;
             }
         }  
         return fits; 
-    }).filter(item => {
-        if (stateSearchTerm !== "") {
-            return item.state.includes(stateSearchTerm)
-        } else {
-            return true;
-        }
-    }).filter(item => {
-        if (districtSearchTerm !== "") {
-            return item.district.includes(districtSearchTerm)
-        } else {
-            return true;
-        }
     });
 
     const houseDisplay = searchedHouse.map(item => {
@@ -46,17 +31,16 @@ export default function MyLegislators() {
 
     const searchedSenate = senate.filter(item => {
         let fits = false;
-        let searchTermComp1 = nameSearchTerm.split(' ');
+        let searchTermComp1 = filterTerm.split(' ');
         for (let comp of searchTermComp1) {
             console.log("component:", comp);
-            if (item.first_name.toLowerCase().includes(comp.toLowerCase()) || item.last_name.toLowerCase().includes(comp.toLowerCase()) || item.state.toLowerCase().includes(comp.toLowerCase())) {
+            if (item.first_name.toLowerCase().includes(filterTerm.toLowerCase()) || item.last_name.toLowerCase().includes(filterTerm.toLowerCase()) || item.state.toLowerCase().includes(filterTerm.toLowerCase())) {
                 fits = true;
             }
         }  
         return fits; 
-    }).filter(item => {
-        return item.state.includes(stateSearchTerm);
-    })
+    });
+
 
     const senateDisplay = searchedSenate.map(item => {
         return <MyLegisCard key={item.id + "my"} item={item} />
