@@ -1,0 +1,54 @@
+.recentVoteCard {
+    border: solid black 1px;
+    margin: 20px;
+    text-align: left;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.recentVoteCard p {
+    margin: 0;
+    padding: 0;
+}
+
+.cardHeading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cardHeading p {
+    text-decoration: underline;
+}
+
+.cardContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cardShortTitleDiv {
+    width: 80%;
+}
+
+.cardLongTitleDiv {
+    width: 80%;
+}
+
+.cardResultsDiv {
+
+}
+
+.positionsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.positionDatum {
+    padding: 5px;
+    margin: 5px;
+    max-width: 250px;
+    border: lightgrey 1px solid;
+}

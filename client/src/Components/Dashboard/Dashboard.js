@@ -8,6 +8,8 @@ import LegislatorsList from '../SeachComponents/FindLegislators/LegislatorsList'
 import MyLegislators from '../MyComponents/MyLegislators/MyLegislators';
 import SubjectsList from '../SeachComponents/FindSubjects/SubjectsList';
 import MySubjects from '../MyComponents/MySubjects/MySubjects';
+import RecentVotes from '../RecentVotes/RecentVotes';
+import RecentBills from '../RecentBills/RecentBills';
 import axios from 'axios';
 
 
@@ -54,6 +56,8 @@ export default function Dashboard() {
             <DashNav />
         </div>      
             <div className="dash-table">
+                {(currentDashFolder === 'Recent Bills') && <RecentBills />}
+                {(currentDashFolder === 'Recent Votes') && <RecentVotes />}
                 {(currentDashFolder === 'Find Legislators') && <LegislatorsList />}
                 {(currentDashFolder === 'My Legislators') && <MyLegislators />}
                 {(currentDashFolder === 'Find Subjects') && <SubjectsList />}

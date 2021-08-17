@@ -27,6 +27,7 @@ To run the project locally:
 - Axios
 - React
 - React-Router
+- React-Spinners
 - Redux
 
 - Mongoose

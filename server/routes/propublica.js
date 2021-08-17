@@ -15,7 +15,7 @@ const getVoteInfo = async (bill) => {
         return data;
 }
 
-router.get('/info', async (req, res, next) => {
+router.get('/recentVotes', async (req, res, next) => {
     const url = `https://api.propublica.org/congress/v1/house/votes/recent.json`;
     const recentVotes = async () => {
         const response = await axios.get(url, {
@@ -32,6 +32,32 @@ router.get('/info', async (req, res, next) => {
     const voteData = await recentVotes();
     res.send(voteData);
 });
+
+
+router.get('/billDetails', async (req, res, next) => {
+    const url = req.query.url;
+    console.log(req.query.url);
+    try {
+        const response = await axios.get(req.query.url,
+            {headers: {"X-API-Key": PROPUBLICA_KEY}
+        });
+        const data = response.data;
+        res.send(data);
+    } catch (err) {
+        console.log(err);
+    }   
+})
+// const loadDetails = () => {
+//     const url = voteData.bill.api_url;
+//     axios.get(url)
+//     .then((res) => {
+//         console.log('loadetails', res);
+//         // setBillDetails(res)
+//     }).then(() => {
+//         // setShowBillDetails(true);
+//     }).catch((err) => {console.log(err)});
+
+// }
 
 router.get('/specificBill', async (req, res, next) => {
     const url = req.query[0];
