@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PositionsDiv from './PositionsDiv';
+// import PositionsDiv from './PositionsDiv';
 import RecentVoteBillDetails from './RecentVoteBillDetails';
 
 export default function RecentVoteCard({ vote }) {
@@ -57,7 +57,7 @@ export default function RecentVoteCard({ vote }) {
                         </table>
                         
                     </div>
-                    <PositionsDiv voteData={voteData} />
+                    {/* <PositionsDiv voteData={voteData} /> */}
                 </div>
             </div>
             

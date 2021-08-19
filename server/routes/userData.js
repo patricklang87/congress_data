@@ -18,7 +18,6 @@ router.get('/data', isAuth, async (req, res, next) => {
 
 
 router.patch('/trackLegislator', isAuth, async (req, res, next) => {
-    console.log('patch reached', req.body);
     let response;
     if (req.body.short_title === "Rep.") response = await User.updateOne({username: req.user.username}, { $addToSet : { 'interests.legislators.congresspeople': req.body }} ); 
     if (req.body.short_title === "Sen." ) response = await User.updateOne({username: req.user.username}, { $addToSet : { 'interests.legislators.senators': req.body }} );
@@ -27,7 +26,6 @@ router.patch('/trackLegislator', isAuth, async (req, res, next) => {
 });
 
 router.delete('/untrackLegislator', isAuth, async (req, res, next) => {
-    console.log('untrack Legislator', req.body);
     let response;
     if (req.body.short_title === "Rep.") response = await User.updateOne({username: req.user.username}, { $pull: { 'interests.legislators.congresspeople': { "id": req.body.id } } } );
     if (req.body.short_title === "Sen.") response = await User.updateOne({username: req.user.username}, { $pull: {'interests.legislators.senators': {"id": req.body.id} }});
@@ -36,14 +34,12 @@ router.delete('/untrackLegislator', isAuth, async (req, res, next) => {
 });
 
 router.patch('/trackSubject', isAuth, async (req, res, next) => {
-    console.log('patch reached', req.body.subject);
     const response = await User.updateOne({username: req.user.username}, { $addToSet : { 'interests.subjects': req.body.subject }} );
     
     console.log("response:", response);
 });
 
 router.delete('/untrackSubject', isAuth, async (req, res, next) => {
-    console.log('untrack Subject', req.body.subject);
     const response = await User.updateOne({username: req.user.username}, { $pull: { 'interests.subjects': req.body.subject } } );
     
     console.log("response:", response);

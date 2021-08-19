@@ -31,7 +31,6 @@ router.post('/login', (req, res, next) => {
       else {
           req.logIn(user, (err) => {
               if (err) throw err;
-              console.log(req.user);
               res.send({msg: "Login Successful!", username: req.user.username, interests: req.user.interests});    
           });
       }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-export default function PositionsDiv({ voteData }) {
-    const positions = voteData.positions;
+export default function PositionsDiv({ voteDetails }) {
+    const positions = voteDetails.positions;
     const [showAll, setShowAll] = useState(false);
    
     const houseTracked = useSelector(state => state.interests.legislators.congresspeople);
@@ -15,10 +15,6 @@ export default function PositionsDiv({ voteData }) {
     if (!showAll) positionsList = positions.filter(item => {
         return allTrackedIds.includes(item.member_id);
     });
-
-
-
-    
 
     const positionDisplay = positionsList.map(item => {
         let posStyle;
@@ -43,6 +39,7 @@ export default function PositionsDiv({ voteData }) {
     return (
         <div>
             <div>
+                <p>{(showAll) ? "All Legislator Positions" : "Tracked Legislator Positions"}</p>
                 <button
                     onClick={() => { setShowAll(!showAll)}}>{(showAll) ? "Show Tracked" : "Show All" }
                 </button>

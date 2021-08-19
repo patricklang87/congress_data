@@ -1,33 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RecentVoteCard from './RecentVoteCard';
-import './RecentVotes.css';
+import RecentBillCard from './RecentBillCard';
+import './RecentBills.css';
 import BeatLoader from 'react-spinners/BeatLoader';
 
 export default function RecentBills() {
-    const [recentVotes, setRecentVotes] = useState([]);
+    const [recentBills, setRecentBills] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    
     useEffect(() => {
+        fetchRecentBills();
+    }, []);
+    
+    const fetchRecentBills = () => {
+        setRecentBills([]);
         setLoading(true);
         axios({
             method: "GET",
-            // withCredentials: true,
-            url: "http://localhost:4000/propublica/recentVotes"
+            url: "http://localhost:4000/propublica/recentBills"
           }).then((res) => {
             console.log(res.data);
-            setLoading(false);
-            setRecentVotes(res.data);
-            
-          }).catch((err) => {
+            const bills = res.data;
+            return bills;
+        }).then((res) => {
+                setLoading(false);
+                setRecentBills(res);       
+        }).catch((err) => {
               console.log(err);
           }); 
-
-    }, []);
-
-    const recentVotesDisplay = recentVotes.map(vote => {
-        return <RecentVoteCard vote={vote} key={vote.results.votes.vote.bill.number + '_' + vote.results.votes.vote.date + '_' + vote.results.votes.vote.question} />
+    }
+    
+    const recentBillDisplay = recentBills.map(bill => {
+        return <RecentBillCard bill={bill} key={bill.bill_id} />
     })
 
     const Loader = () => {
@@ -40,7 +44,8 @@ export default function RecentBills() {
 
     return (
         <div>
-            {(loading) ? <Loader /> : recentVotesDisplay}
+            <button onClick={fetchRecentBills} >Refresh</button>
+            {(loading) ? <Loader /> : recentBillDisplay}
         </div>
 
     )

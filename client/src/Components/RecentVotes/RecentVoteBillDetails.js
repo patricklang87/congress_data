@@ -24,7 +24,6 @@ export default function RecentVoteBillDetails({ voteData }) {
         } catch (err) {
             console.log(err)
         }
-
     }
 
     const handleClick = () => {
