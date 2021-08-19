@@ -91,6 +91,28 @@ router.get('/recentBills', async (req, res, next) => {
     }
 });
 
+router.get('/billsByTrackedSubject', async (req, res, next) => {
+    const keyword = req.query.query;
+    console.log("keyword", req.query.query);
+    const uri = `https://api.propublica.org/congress/v1/bills/search.json?query=${keyword}`;
+    try {
+        let response = await axios.get(
+            uri,
+            {headers: {"X-API-Key": PROPUBLICA_KEY}}
+        );
+        let data = await response.data;
+        let billsExtraInfo = [];
+        for (let bill of data.results[0].bills) {
+            const info = await getSpecificBill(bill);
+            billsExtraInfo.push(info);
+        }
+        res.send(billsExtraInfo);
+    } catch (err) {
+        console.log(err);
+    }
+    
+});
+
 const getSpecificBill = async (bill) => {
     let uri = bill.bill_uri;
     try {
@@ -137,24 +159,7 @@ router.get('/subjects', async (req, res, next) => {
     res.send(topicsData);
 });
 
-router.get('/billsByTrackedSubject', async (req, res, next) => {
-    const keyword = req.query[0];
-    const url = `https://api.propublica.org/congress/v1/bills/search.json?query=${keyword}`;
-    try {
-        const getBills = async () => {
-            const response = await axios.get(url, {
-                headers: {"X-API-Key": PROPUBLICA_KEY}
-            });
-            const data = await response.data;
-            return data;
-        }
-        const billData = await getBills();
-        res.send(billData);
-    } catch (err) {
-        console.log(err);
-    }
-    
-});
+
 
 const fetchMemberData = async () => {
     try {
