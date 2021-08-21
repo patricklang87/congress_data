@@ -50,7 +50,7 @@ export default function DashNav() {
                 </div>
                 <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
                     <p onClick={() => handleSelect('Recent Bills')}>Recent Bills</p>
-                    <p onClick={() => handleSelect('Recent Votes')}>Recent Votes</p>
+                    <p onClick={() => handleSelect('My Bills')}>My Bills</p>
                     <p onClick={() => handleSelect('My Legislators')} >My Legislators</p>
                     <p onClick={() => handleSelect('My Subjects')}>My Subjects</p>
                     <p onClick={() => handleSelect('Find Legislators')} >Find Legislators</p>

@@ -142,7 +142,19 @@ router.get('/specificBill', async (req, res, next) => {
     res.send(billData);
 });
 
-
+// router.get('/specificMember', async (req, res, next) => {
+//     const id = req.query.id;
+//     const uri = `https://api.propublica.org/congress/v1/members/${id}.json`;
+//     try {
+//         const response = await axios.get(uri, {
+//             headers: {"X-API-Key": PROPUBLICA_KEY}
+//         });
+//         const data = await response.data;
+//         res.send(data);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// });
 
 
 router.get('/subjects', async (req, res, next) => {

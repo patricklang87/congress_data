@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { setRecentUserEmail, setCurrentUser, setAuthMessage } from '../../redux/authSlice';
 import { removeInterests } from '../../redux/interestsSlice';
+import { removeAllBookmarks } from '../../redux/billsSlice';
 import axios from 'axios';
 
 
@@ -22,7 +23,7 @@ export default function Logout() {
             dispatch(setCurrentUser(null));
             dispatch(setAuthMessage(res.data.msg));
             dispatch(removeInterests());
-            
+            dispatch(removeAllBookmarks());
             history.push('/');
         }).catch((err) => {
             console.log(err);

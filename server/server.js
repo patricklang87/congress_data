@@ -15,6 +15,7 @@ const auth = require('./routes/auth');
 const district = require('./routes/district');
 const propublica = require ('./routes/propublica');
 const userData = require('./routes/userData');
+const scraper = require('./routes/scraper');
 
 const app = express();
 
@@ -58,6 +59,7 @@ app.use('/auth', auth);
 app.use('/district', district);
 app.use('/propublica', propublica);
 app.use('/userData', userData);
+app.use('/scraper', scraper);
 
 app.listen(4000, () => {
     console.log("Listening on Port 4000")

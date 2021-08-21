@@ -22,12 +22,16 @@ export default function PositionsDiv({ voteDetails }) {
         if (item.vote_position === "No") posStyle = {backgroundColor: 'pink'};     
 
 
+    let backgroundColor = 'white';
+    if (item.party === "D") backgroundColor = "rgb(61, 250, 250)";
+    if (item.party === "R") backgroundColor = "rgb(252, 90, 90)";
+
         return (
-            <div className="positionDatum" >
+            <div className="positionDatum" style={{backgroundColor: backgroundColor}} >
                 <p>
-                    {item.name}, {item.party}, {item.state}-{item.district}:
+                    {item.name} ({item.party}-{item.state}):{' '}
                      <span style={posStyle}>
-                        {item.vote_position}
+                        {' ' + item.vote_position + ' '}
                     </span>
                 </p>
             </div>
@@ -39,10 +43,10 @@ export default function PositionsDiv({ voteDetails }) {
     return (
         <div>
             <div>
-                <p>{(showAll) ? "All Legislator Positions" : "Tracked Legislator Positions"}</p>
-                <button
+                <h4>{(showAll) ? "All Legislator Positions " : "Tracked Legislator Positions "}
+                <span><button
                     onClick={() => { setShowAll(!showAll)}}>{(showAll) ? "Show Tracked" : "Show All" }
-                </button>
+                </button></span></h4>
             </div>
             <div className="positionsList">
                 {positionDisplay}

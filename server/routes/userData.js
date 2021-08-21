@@ -45,4 +45,16 @@ router.delete('/untrackSubject', isAuth, async (req, res, next) => {
     console.log("response:", response);
 });
 
+router.patch('/bookmarkBill', isAuth, async (req, res, next) => {
+    const response = await User.updateOne({username: req.user.username}, { $addToSet : { bookmarks: req.body.bill }} );
+    
+    console.log("response:", response);
+});
+
+router.delete('/unbookmarkBill', isAuth, async (req, res, next) => {
+    const response = await User.updateOne({username: req.user.username}, { $pull: { bookmarks: {bill_id: req.body.bill.bill_id} } } );
+    
+    console.log("response:", response);
+});
+
 module.exports = router;

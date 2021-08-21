@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser, setAuthMessage } from '../../redux/authSlice';
 import { loadInterests } from '../../redux/interestsSlice';
+import { setBookmarkedBills } from '../../redux/billsSlice';
 import axios from 'axios';
 
 export default function Login({ setShowingLogin }) {
@@ -30,6 +31,7 @@ export default function Login({ setShowingLogin }) {
             if (res.data.username && res.data.interests) {
                 dispatch(setCurrentUser(res.data.username));
                 dispatch(loadInterests(res.data.interests));
+                dispatch(setBookmarkedBills(res.data.bookmarks));
             }
             dispatch(setAuthMessage(res.data.msg));
             if (res.data.msg === "Login Successful!") {

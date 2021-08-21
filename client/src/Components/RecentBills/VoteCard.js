@@ -6,6 +6,7 @@ import VoteDetailDiv from './VoteDetailDiv';
 export default function VoteCard({ vote }) {
     const [voteDetails, setVoteDetails] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [hide, setHide] = useState(false);
 
     const fetchDetails = () => {
         const url = vote.api_url;
@@ -44,14 +45,16 @@ export default function VoteCard({ vote }) {
         <div className="voteCard">
             <div className="voteHeading"> 
                 <div >
-                    <p style={{textDecoration: 'underline'}}>{vote.chamber} Roll Call {vote.roll_call} on {vote.date} </p>
+                    <h4>{vote.chamber} Roll Call {vote.roll_call} on {vote.date} </h4>
                     <p>Result: {vote.result}</p> 
                 </div>
                 <div>
-                    <button onClick={fetchDetails}>Show Details</button>
+                    {(voteDetails == null && loading === false) && <button onClick={fetchDetails}>Get Details</button>}
+                    {(voteDetails != null && loading === false) &&
+                        <button onClick={() => {setHide(!hide)}}>{(hide) ? "Show" : "Hide" }</button>}
                 </div>
             </div>
-            <div>
+            <div style={(hide) ? {display: 'none'} : {display: 'block'}}>
                 <Loader />
                 {(voteDetails) && <VoteDetailDiv voteDetails={voteDetails.results.votes.vote} />}
             </div>          

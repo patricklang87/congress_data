@@ -1,3 +1,8 @@
+.recentBillCard h3, 
+.recentBillCard h4 {
+    margin: 0;
+}
+
 .recentBillCard {
     border: solid black 1px;
     margin: 20px;

@@ -13,6 +13,10 @@ const user = new mongoose.Schema({
     interests: {
         type: Object,
         default: {subjects: [], legislators: {senators: [], congresspeople: []}}
+    },
+    bookmarks: {
+        type: Array,
+        default: []
     }
 });
 
