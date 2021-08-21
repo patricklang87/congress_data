@@ -9,16 +9,19 @@ const readBill = async (url) => {
         const page = await browser.newPage();
         await page.goto(url);
 
-        const [el] = await page.$x('/html/body/div[1]/div/main/div[2]/div[2]/div[3]');
+        const [el] = await page.$x('//*[@id="billTextContainer"]');
         const txt = await el.getProperty('textContent');
         const srcTxt = await txt.jsonValue();
+        browser.close();
+        return srcTxt;
     } catch (err) {
         console.log(err)
         res.send(err);
     }
-    browser.close();
-    return srcTxt;  
 }
+
+
+'//*[@id="billTextContainer"]'
 
 const findSearchTerms = async (billText, terms) => {
     console.log(billText);
@@ -33,14 +36,14 @@ const findSearchTerms = async (billText, terms) => {
 }
 
 router.get('/subjectsSearch', async (req, res, next) => {
-    const url = req.query.url + '/text';
+    const url = req.query.url + '/text?format=txt';
     console.log(url);
     const subjects = req.query.subjects;
 
     try {
         const billText = await readBill(url);
         const relevantTerms = await findSearchTerms(billText, subjects);
-        res.send(relevantTerms);
+        res.send(relevantTerms); 
     } catch (err) {
         console.log(err);
     }

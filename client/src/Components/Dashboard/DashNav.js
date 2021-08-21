@@ -39,13 +39,12 @@ export default function DashNav() {
     return (
         <div className="dashNavBar">
             <div>
-                <h1><strong>Dashboard</strong></h1>
-                <h2>{currentDashFolder}</h2>
+                <h1>{currentDashFolder}</h1>
             </div>    
             <div>
                 <div>
                     <div onClick={toggleNavVisible}>
-                        <span style={{display: "inline", fontSize: "20px", transform: "rotate(90deg)"}}>&#10148;</span><span><strong> Navigation</strong></span>
+                        <span style={{display: "inline", fontSize: "20px" }}>&#10148;</span><span><strong> Navigation</strong></span>
                     </div> 
                 </div>
                 <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>

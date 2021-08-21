@@ -28,6 +28,10 @@
     text-decoration: underline;
 }
 
+.headingButtons button {
+    margin-left: 5px;
+}
+
 .cardContent {
     display: flex;
     flex-wrap: wrap;

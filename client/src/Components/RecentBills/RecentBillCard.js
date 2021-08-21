@@ -79,7 +79,7 @@ export default function RecentBillCard({ bill }) {
                 <div className="cardTitleDiv">
                     <h3>{bill.number} {(showFullTitle) ? bill.title : bill.short_title} {(!equalTitleLength) && <span style={{color: 'red'}} onClick={() => setShowFullTitle(!showFullTitle)}>{(showFullTitle) ? " (Less)" : " (...)" } </span>}</h3>
                 </div>
-                <div>
+                <div className="headingButtons">
                     {(isBookmarked) ?
                     <button onClick={handleRemoveBookmark}>Remove Bookmark</button> :
                     <button onClick={handleBookmark}>Bookmark</button>
@@ -89,7 +89,8 @@ export default function RecentBillCard({ bill }) {
             </div>
 
             <div style={(hide) ? {display: 'none'} : {display: 'block'}}>
-                <p>Introduced on: {bill.introduced_date} </p>
+                <p>Latest Major Action: {bill.latest_major_action_date} - {bill.latest_major_action}</p> 
+                <p>Introduced on {bill.introduced_date}.</p>
                 <div className="sponsors">
                     <div>
                         
@@ -117,11 +118,12 @@ export default function RecentBillCard({ bill }) {
                     </div>
                     
                 </div>
-                <RelevantSubjects bill={bill} />
+                <div>
+                    <RelevantSubjects bill={bill} />    
+                </div>
+                
                 <div>
                     {(bill.summary) ? <button onClick={() => {setShowSummary(!showSummary)}}>{(showSummary) ? "Hide Summary" : "Show Summary"}</button> : <span style={{color: 'red'}}>No bill summary found in database.</span>}
-                    <span> </span>
-                    <a href={bill.congressdotgov_url + '/text'} rel="noreferrer" target="_blank">View Full Text</a>
                     <div style={(showSummary) ? {display: 'block'} : {display: 'none'}}>
                         <p>{bill.summary}</p>
                     </div>
