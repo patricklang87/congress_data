@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import './Navigation.css';
-import DashNavTwo from './DashNavTwo';
+import DashNav from '../Dashboard/DashNav'
+import { toggleNavVisible } from '../../redux/viewsSlice';
 
 export default function Navigation() {
+    const dispatch = useDispatch();
     const currentUserEmail = useSelector(state => state.auth.currentUserEmail);
-    const [showNav, setShowNav] = useState(false);
     const location = useLocation().pathname;
     
     console.log(location);
@@ -21,17 +22,17 @@ export default function Navigation() {
                     
                 </div>
                 <nav>
-                    {/* {currentUserEmail ? <span><i>Welcome, <strong>{currentUserEmail}</strong>!</i></span> : <span>Logged Out</span>} */}
-                    <span onClick={() => {setShowNav(!showNav)}}>Nav</span>
+                    <span onClick={() => {dispatch(toggleNavVisible())} }>Nav</span>
 
                     {(location === '/') && <Link to="/dashboard">Dashboard</Link>}
                     {(currentUserEmail) && <Logout />}
                     {(!currentUserEmail && location === '/dashboard') && <Link to="/">Log In</Link>}
                 </nav>   
             </div>
-            <div style={(showNav) ? {display: "block"} : {display: "none"}}>
-                <DashNavTwo />
-            </div>
+
+            <div className="dashnav" >
+                <DashNav />
+            </div>    
 </div>
 
     )

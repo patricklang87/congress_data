@@ -4,7 +4,8 @@ const viewsSlice = createSlice({
     name: "views",
     initialState: {
         legislatorView: 'sideBySide',
-        dashFolder: 'Find Legislators'
+        dashFolder: 'Find Legislators',
+        navVisible: true
     },
     reducers: {
         setLegislatorView: (state, action) => {
@@ -12,9 +13,12 @@ const viewsSlice = createSlice({
         },
         setDashFolder: (state, action) => {
             state.dashFolder = action.payload;
+        },
+        toggleNavVisible: (state) => {
+            state.navVisible = !state.navVisible;
         }
     }
 });
 
-export const { setLegislatorView, setDashFolder } = viewsSlice.actions;
+export const { setLegislatorView, setDashFolder, toggleNavVisible } = viewsSlice.actions;
 export default viewsSlice.reducer;

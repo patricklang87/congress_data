@@ -10,7 +10,6 @@ import SubjectsList from '../SeachComponents/FindSubjects/SubjectsList';
 import MySubjects from '../MyComponents/MySubjects/MySubjects';
 import RecentBills from '../RecentBills/RecentBills';
 import MyBills from '../MyComponents/MyBills/MyBills';
-import DashNavTwo from '../Navigation/DashNavTwo';
 import axios from 'axios';
 
 
@@ -28,6 +27,7 @@ const isAuth = () => {
 
 export default function Dashboard() {
     const dispatch = useDispatch();
+    const navVisible = useSelector(state => state.views.navVisible);
 
     useEffect(() => {
         axios({
@@ -52,11 +52,10 @@ export default function Dashboard() {
         
         <div className="Dashboard">     
         
-        <div className="dashnav">
-        <button onClick={isAuth}>Is Auth?</button>
-            <DashNav />
-            
-        </div>      
+        {/* <div className="dashnav" style={(navVisible) ? {display: "block"} : {display: "none"}}> */}
+        {/* <button onClick={isAuth}>Is Auth?</button> */}
+             {/* <DashNav /> */}
+        {/* </div>       */}
             <div className="dash-table">
                 {(currentDashFolder === 'Recent Bills') && <RecentBills />}
                 {(currentDashFolder === 'My Bills') && <MyBills />}

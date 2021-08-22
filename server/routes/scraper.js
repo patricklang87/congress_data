@@ -24,12 +24,9 @@ const readBill = async (url) => {
 '//*[@id="billTextContainer"]'
 
 const findSearchTerms = async (billText, terms) => {
-    console.log(billText);
-    console.log('terms', terms);
     const relevantTerms = [];
     for (let term of terms) {
         const isPresent = await billText.toLowerCase().search(term.toLowerCase());
-        console.log(isPresent);
         if (isPresent !== -1) relevantTerms.push(term);
     }
     return relevantTerms;
@@ -37,7 +34,6 @@ const findSearchTerms = async (billText, terms) => {
 
 router.get('/subjectsSearch', async (req, res, next) => {
     const url = req.query.url + '/text?format=txt';
-    console.log(url);
     const subjects = req.query.subjects;
 
     try {

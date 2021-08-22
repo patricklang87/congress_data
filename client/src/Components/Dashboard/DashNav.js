@@ -9,6 +9,7 @@ import { setDashFolder } from '../../redux/viewsSlice';
 export default function DashNav() {
     const dispatch = useDispatch();
     const currentDashFolder = useSelector(state => state.views.dashFolder);
+    const dashNavVisible = useSelector(state => state.views.navVisible);
     
     //change dash folder
 
@@ -36,11 +37,16 @@ export default function DashNav() {
         opacity: 1
     }
 
+    const barVis = {
+        right: '0px'
+    }
+
+    const barNotVis = {
+        right: '-201px'
+    }
+
     return (
-        <div className="dashNavBar">
-            <div>
-                <h1>{currentDashFolder}</h1>
-            </div>    
+        <div className="dashNavBar" style={(dashNavVisible) ? barVis : barNotVis}>    
             <div>
                 <div>
                     <div onClick={toggleNavVisible}>

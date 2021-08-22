@@ -44,7 +44,7 @@ main {
 footer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   background-color: rgb(110, 1, 1);
   border-top: ridge 5px rgb(179, 0, 30);
   color: white;

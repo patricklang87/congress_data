@@ -7,29 +7,37 @@ import { useTransition, animated } from 'react-spring';
 export default function AuthBox() {
     const [showingLogin, setShowingLogin] = useState(true);
 
-    const toggleTransition = useTransition(showingLogin, {
-        from: {opacity: 0, position: 'absolute'},
-        enter: {opacity: 1, position: 'absolute'},
-        leave: {opacity: 0, position: 'absolute'},
-        config: {
-            duration: 300
-        }
-    });
+    const visible = {
+        opacity: 1,
+        display: 'block'
+    }
 
-    return toggleTransition((style, item) => item ? (
-        <animated.div style={style}>
+    const invisible = {
+        opacity: 0,
+        display: 'none'
+    }
+
+    // const toggleTransition = useTransition(showingLogin, {
+    //     from: {opacity: 0, position: 'absolute'},
+    //     enter: {opacity: 1, position: 'absolute'},
+    //     leave: {opacity: 0, position: 'absolute'},
+    //     config: {
+    //         duration: 300
+    //     }
+    // });
+
+    return (
+        <div>
+            <div className='authBox' style={(showingLogin) ? visible : invisible}>
                 <Login className="authBox" setShowingLogin={setShowingLogin} />
-        </animated.div>
-    ) : (
-        <animated.div style={style} >
-            <Register className="authBox" setShowingLogin={setShowingLogin} />
-        </animated.div>
-    ))
-    // (
-    //     <div>
-    //             <div className="authBox">
-    //                 {(showingLogin) ? <Login setShowingLogin={setShowingLogin} /> : <Register setShowingLogin={setShowingLogin} />}
-    //             </div>
-    //     </div>
-    // )
+            </div>
+            <div className='authBox' style={(showingLogin) ? invisible: visible}>
+                <Register className="authBox" setShowingLogin={setShowingLogin} />
+            </div>
+
+        
+            
+        </div>
+
+    );
 }

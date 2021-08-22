@@ -39,10 +39,14 @@ export default function Authentication() {
         <div className="Authentication">
             <div className="welcome">
                 <h2><i>LegisTracker</i> helps you follow bills, legislators and legislative subjects that matter to you.</h2>
+            </div> 
+            <div className="photoCredit">
+                <p>Photo by <a href="https://unsplash.com/@angelvela?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Louis Velazquez</a> on <a href="https://unsplash.com/s/photos/capitol-building?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
             </div>
             <div className="authDiv">
                 <AuthBox />
             </div>
+
         </div>
     );
 }

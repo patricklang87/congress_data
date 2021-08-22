@@ -26,3 +26,38 @@
 .navBar a:hover, .navBar span:hover {
     color: rgb(179, 0, 30);
 }
+
+.dashnav {
+}
+
+.dashNavBar {
+    border-left: red 1px solid;
+    border-bottom: red 1px solid;
+    border-radius: 5px;
+    background-color: white;
+    padding: 0;
+    padding-left: 20px;
+    margin: 0;
+    position: fixed;
+    width: 180px;
+    text-align: left;
+    z-index: 0;
+    transition: right 250ms ease-in-out;
+}
+
+.dashNavBar p {
+    margin: 0;
+}
+
+.dashNavOptions {
+    transition: height 250ms ease-in-out, opacity 250ms 100ms;
+    margin-bottom: 20px;
+}
+
+.dashNavOptions p {
+    cursor: default;
+}
+
+.dashNavOptions p:hover {
+    color: darkslategray;
+}
