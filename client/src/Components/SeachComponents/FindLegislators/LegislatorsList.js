@@ -63,15 +63,19 @@ export default function LegislatorsList() {
         return <LegisSearchCard key={item.id + "search"} item={item} />
     });
 
+    
+
 
 
     let HouseD = (style) => {
         return (
             <div className={(legislatorView === 'house' || legislatorView === 'senate') ? 'legisListFullWidth' : ''}>
-                <h2>House</h2>    
-                <div className="legislatorChamberDisplay">    
-                    {houseDisplay}
-                </div> 
+                <h2>House</h2> 
+                       
+                    <div className={(legislatorView !== "sideBySide") ? "legislatorChamberDisplayNonSBS" : "legislatorChamberDisplaySBS" }>    
+                        {houseDisplay}
+                    </div> 
+
             </div>
         );
     } 
@@ -80,7 +84,7 @@ export default function LegislatorsList() {
         return (
             <div className={(legislatorView === 'house' || legislatorView === 'senate') ? 'legisListFullWidth' : ''} >
                 <h2>Senate</h2>
-                <div className="legislatorChamberDisplay" >
+                <div className={(legislatorView !== "sideBySide") ? "legislatorChamberDisplayNonSBS" : "legislatorChamberDisplaySBS"}>
                     {senateDisplay}
                 </div> 
         </div>
@@ -91,14 +95,14 @@ export default function LegislatorsList() {
 
     if (legislatorView === 'house' || legislatorView === 'sideBySide') {
         return (
-            <div className="legislatorSearchDisplay">
+            <div className="legislatorSearchDisplay" >
                 <HouseD />
                 <SenateD />
             </div>
         );    
     } else if (legislatorView === 'senate') {
         return (
-            <div className="legislatorSearchDisplay">
+            <div className="legislatorSearchDisplay" >
                 <SenateD />
                 <HouseD />    
             </div>

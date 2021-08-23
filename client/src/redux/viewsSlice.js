@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const viewsSlice = createSlice({
     name: "views",
     initialState: {
-        legislatorView: 'sideBySide',
+        legislatorView: 'senate',
         dashFolder: 'Find Legislators',
         navVisible: true
     },

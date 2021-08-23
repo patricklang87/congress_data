@@ -5,9 +5,6 @@ import MyLegisCard from './MyLegisCard';
 
 
 export default function MyLegislators() {
-    // const nameSearchTerm = useSelector(state => state.search.nameSearchTerm);
-    // const stateSearchTerm = useSelector(state => state.search.stateSearchTerm);
-    // const districtSearchTerm = useSelector(state => state.search.districtSearchTerm);
     const house = useSelector(state => state.interests.legislators.congresspeople);
     const senate = useSelector(state => state.interests.legislators.senators);
     const legislatorView = useSelector(state => state.views.legislatorView);
@@ -52,7 +49,7 @@ export default function MyLegislators() {
         return (
             <div className={(legislatorView === 'house' || legislatorView === 'senate') ? 'legisListFullWidth' : ''}>
                 <h2>House</h2>    
-                <div className="legislatorChamberDisplay">    
+                <div className={(legislatorView !== "sideBySide") ? "legislatorChamberDisplayNonSBS" : "legislatorChamberDisplaySBS"}>   
                     {houseDisplay}
                 </div> 
             </div>
@@ -63,7 +60,7 @@ export default function MyLegislators() {
         return (
             <div className={(legislatorView === 'house' || legislatorView === 'senate') ? 'legisListFullWidth' : ''} >
                 <h2>Senate</h2>
-                <div className="legislatorChamberDisplay" >
+                <div className={(legislatorView !== "sideBySide") ? "legislatorChamberDisplayNonSBS" : "legislatorChamberDisplaySBS"}>
                     {senateDisplay}
                 </div> 
         </div>
@@ -74,14 +71,14 @@ export default function MyLegislators() {
 
     if (legislatorView === 'house' || legislatorView === 'sideBySide') {
         return (
-            <div className="legislatorSearchDisplay">
+            <div className="legislatorSearchDisplay" style={(legislatorView !== "sideBySide") ? {width: '1088px'} : {}}>
                 <HouseD />
                 <SenateD />
             </div>
         );    
     } else if (legislatorView === 'senate') {
         return (
-            <div className="legislatorSearchDisplay">
+            <div className="legislatorSearchDisplay" style={(legislatorView !== "sideBySide") ? {width: '1088px'} : {}}>
                 <SenateD />
                 <HouseD />    
             </div>
