@@ -37,7 +37,7 @@ export default function LegislatorsView() {
             <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
                 <p onClick={() => handleClick('house')}>House First</p>
                 <p onClick={() => handleClick('senate')}>Senate First</p>
-                <p onClick={() => handleClick('sideBySide')}>Side-by-Side</p>
+                <p className="sideBySideButton" onClick={() => handleClick('sideBySide')}>Side-by-Side</p>
             </div>
         </div>
     );

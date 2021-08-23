@@ -77,7 +77,7 @@ export default function RecentBillCard({ bill }) {
         <div className="recentBillCard">
             <div className="cardHeading">
                 <div className="cardTitleDiv">
-                    <h3>{bill.number} {(showFullTitle) ? bill.title : bill.short_title} {(!equalTitleLength) && <span style={{color: 'red'}} onClick={() => setShowFullTitle(!showFullTitle)}>{(showFullTitle) ? " (Less)" : " (...)" } </span>}</h3>
+                    <h3>{bill.number} {(showFullTitle) ? bill.title : bill.short_title} {(!equalTitleLength) && <span style={{color: 'red'}} onClick={() => setShowFullTitle(!showFullTitle)}>{(showFullTitle) ? " (Less)" : " (More)" } </span>}</h3>
                 </div>
                 <div className="headingButtons">
                     {(isBookmarked) ?

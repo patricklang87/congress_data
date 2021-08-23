@@ -63,3 +63,20 @@
     margin-right: 5px;
     margin-bottom: 5px;
 }
+
+
+@media screen and (max-width: 570px) {
+    .legislatorSearchDisplay {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .sideBySideButton {
+        display: none;
+    }
+
+    
+    .legisListFullWidth {
+        grid-column: 1 / span 1;
+    }
+  }

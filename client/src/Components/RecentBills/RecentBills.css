@@ -28,6 +28,8 @@
     text-decoration: underline;
 }
 
+
+
 .headingButtons button {
     margin-left: 5px;
 }
@@ -77,3 +79,10 @@
     max-width: 250px;
     border: lightgrey 1px solid;
 }
+
+
+@media screen and (max-width: 720px) {
+    .cardTitleDiv {
+      width: 100%;
+    }
+  }

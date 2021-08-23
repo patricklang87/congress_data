@@ -21,6 +21,7 @@
     margin-right: 20px;
     color: white;
     text-decoration: none;
+    cursor: default;
 }
 
 .navBar a:hover, .navBar span:hover {

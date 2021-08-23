@@ -10,9 +10,16 @@ import { toggleNavVisible } from '../../redux/viewsSlice';
 export default function Navigation() {
     const dispatch = useDispatch();
     const currentUserEmail = useSelector(state => state.auth.currentUserEmail);
+    const navVisible = useSelector(state => state.views.navVisible);
     const location = useLocation().pathname;
     
-    console.log(location);
+    const navVisStyle = {
+        backgroundColor: 'pink',
+        fontColor: 'white',
+        padding: '5px',
+        borderRadius: '5px'
+
+    }
 
     return (
         <div>
@@ -22,7 +29,7 @@ export default function Navigation() {
                     
                 </div>
                 <nav>
-                    <span onClick={() => {dispatch(toggleNavVisible())} }>Nav</span>
+                    {(location === '/dashboard') && <span style={(navVisible) ? navVisStyle : {}} onClick={() => {dispatch(toggleNavVisible())} }>Nav</span>} 
 
                     {(location === '/') && <Link to="/dashboard">Dashboard</Link>}
                     {(currentUserEmail) && <Logout />}
@@ -30,9 +37,11 @@ export default function Navigation() {
                 </nav>   
             </div>
 
+            
+            {(location === '/dashboard') && 
             <div className="dashnav" >
                 <DashNav />
-            </div>    
+            </div>}    
 </div>
 
     )
