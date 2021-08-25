@@ -4,8 +4,16 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require('../schemes/user');
 const { isAuth } = require('../middlewares/isAuth');
+const { registerValidation, loginValidation } = require('../validation');
 
 router.post('/register', (req, res, next) => {
+    //register validation
+    const { error } = registerValidation(req.body);
+    if (error) {
+      let message = error.details[0].message.replace("length", "").replace("password", "Password").replace("username", "Email") + '.';
+      return res.send({msg: message});
+    }
+
   User.findOne({ username: req.body.username }, async (err, doc) => {
       if (err) throw err;
       if (doc) res.send({msg: "User Already Exists."});
@@ -25,6 +33,13 @@ router.post('/register', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+  //login validation
+  const { error } = loginValidation(req.body);
+  if (error) {
+    let message = error.details[0].message.replace("length", "").replace("password", "Password").replace("username", "Email") + '.';
+    return res.send({msg: message});
+  }
+
   passport.authenticate("local", (err, user, info) => {
       if (err) throw err;
       if (!user) res.send({msg: "Login Error. Check Username and Password."});

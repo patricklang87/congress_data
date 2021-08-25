@@ -25,6 +25,8 @@ export default function Register({ setShowingLogin }) {
             if (res.data.msg === "New User Created!") {
                 setShowingLogin(true);
             }
+        }).catch((err) => {
+            console.log(err);
         });
     }
 

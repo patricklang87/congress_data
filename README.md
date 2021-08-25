@@ -22,6 +22,8 @@ To run the project locally:
 - JavaScript
 - Node
 - NPM
+
+### Frontend
 - HTML
 - CSS
 - Axios
@@ -30,12 +32,16 @@ To run the project locally:
 - React-Spinners
 - Redux
 
+
+### Backend
 - Mongoose
 - PassportJS
 - Bcrypt
 - Express
 - Express-Session
 - Dotenv
+- @hapi/joi
+- Puppeteer
 
 ## Database
 
@@ -47,11 +53,15 @@ To run the project locally:
 - ProPublica Congress API
 - MapQuest API
 
+## Other Resources
+
+- Congress.gov
+- The United States Project on Github
+
 ## Future Updates
 
-- [ ] Automatcally Fetch and Display Bill Info
-- [ ] Simplify Dashboard Navigation Layout
-- [ ] Create Optimized Mobile Layout
+- [ ] Simplify dashboard navigation layout.
+- [ ] Create "Most Recent Votes" view for tracked legislators.
  
 ## Author
 
