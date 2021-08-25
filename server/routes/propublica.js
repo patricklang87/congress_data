@@ -9,7 +9,6 @@ const PROPUBLICA_KEY = process.env.PROPUBLICA_KEY;
 
 router.get('/voteDetails', async (req, res, next) => {
     let voteUri = req.query.url;
-    console.log('voteUri', req.query)
     try {
         const response = await axios.get(voteUri, {
             headers: {"X-API-Key" : PROPUBLICA_KEY}
@@ -60,18 +59,7 @@ router.get('/billDetails', async (req, res, next) => {
     } catch (err) {
         console.log(err);
     }   
-})
-// const loadDetails = () => {
-//     const url = voteData.bill.api_url;
-//     axios.get(url)
-//     .then((res) => {
-//         console.log('loadetails', res);
-//         // setBillDetails(res)
-//     }).then(() => {
-//         // setShowBillDetails(true);
-//     }).catch((err) => {console.log(err)});
-
-// }
+});
 
 router.get('/recentBills', async (req, res, next) => {
     try {
@@ -93,7 +81,6 @@ router.get('/recentBills', async (req, res, next) => {
 
 router.get('/billsByTrackedSubject', async (req, res, next) => {
     const keyword = req.query.query;
-    console.log("keyword", req.query.query);
     const uri = `https://api.propublica.org/congress/v1/bills/search.json?query=${keyword}`;
     try {
         let response = await axios.get(
@@ -141,20 +128,6 @@ router.get('/specificBill', async (req, res, next) => {
     const billData = await getBill();
     res.send(billData);
 });
-
-// router.get('/specificMember', async (req, res, next) => {
-//     const id = req.query.id;
-//     const uri = `https://api.propublica.org/congress/v1/members/${id}.json`;
-//     try {
-//         const response = await axios.get(uri, {
-//             headers: {"X-API-Key": PROPUBLICA_KEY}
-//         });
-//         const data = await response.data;
-//         res.send(data);
-//     } catch (err) {
-//         console.log(err);
-//     }
-// });
 
 
 router.get('/subjects', async (req, res, next) => {

@@ -10,7 +10,6 @@ export default function VoteCard({ vote }) {
 
     const fetchDetails = () => {
         const url = vote.api_url;
-        console.log('url', url)
         setLoading(true);
         try {
             axios({

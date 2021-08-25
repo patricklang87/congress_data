@@ -22,7 +22,6 @@ const getRelevantSubjects = async () => {
         url: 'http://localhost:4000/scraper/subjectsSearch',
         params: {subjects: trackedSubjects, url: bill.congressdotgov_url}
       }).then((res) => {
-        console.log(res.data);
         const subjs = res.data;
         return subjs;
     }).then((res) => {
@@ -48,7 +47,8 @@ const getRelevantSubjects = async () => {
     return (
         <div>
             <div><p>
-                {(relevantSubjects.length < 1 && loading === false && attemptedSearch === false) && <button onClick={getRelevantSubjects}>Tracked Subjects</button>}
+                {(trackedSubjects.length >= 1 && relevantSubjects.length < 1 && loading === false && attemptedSearch === false) && <button onClick={getRelevantSubjects}>Tracked Subjects</button> }
+                {(trackedSubjects.length < 1 ) && <span style={{color: "red"}}>Go to "Find Subjects" to enable subject checking.</span>}
                 <BeatLoader loading={loading} color="darkred" size={15} />
                 {(relevantSubjects.length > 0) && relevantSubjectsList} 
                 {(attemptedSearch === true && relevantSubjects.length < 1) && noMatchedSubjects}

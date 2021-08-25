@@ -40,7 +40,6 @@ export default function RecentBillCard({ bill }) {
 
     const handleBookmark = () => {
         dispatch(addBookmarkedBill(bill));
-        console.log('bill', bill)
         try {
             axios({
                 method: "PATCH",

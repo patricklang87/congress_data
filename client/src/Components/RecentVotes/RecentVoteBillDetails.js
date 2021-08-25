@@ -17,7 +17,6 @@ export default function RecentVoteBillDetails({ voteData }) {
                 params: {url: url},
                 url: `http://localhost:4000/propublica/billDetails`
             }).then((res) => {
-                console.log(res.data);
                 setBillDetails(res.data);
                 setLoading(false);
             });

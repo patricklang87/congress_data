@@ -14,11 +14,17 @@ export default function Navigation() {
     const location = useLocation().pathname;
     
     const navVisStyle = {
-        backgroundColor: 'pink',
+        backgroundColor: 'red',
         fontColor: 'white',
         padding: '5px',
         borderRadius: '5px'
 
+    }
+
+    const navNotVis = {
+        borderRadius: '5px',
+        border: 'solid white 1px',
+        padding: '5px'
     }
 
     return (
@@ -29,7 +35,7 @@ export default function Navigation() {
                     
                 </div>
                 <nav>
-                    {(location === '/dashboard') && <span style={(navVisible) ? navVisStyle : {}} onClick={() => {dispatch(toggleNavVisible())} }>Nav</span>} 
+                    {(location === '/dashboard') && <span style={(navVisible) ? navVisStyle : navNotVis} onClick={() => {dispatch(toggleNavVisible())} }>Nav</span>} 
 
                     {(location === '/') && <Link to="/dashboard">Dashboard</Link>}
                     {(currentUserEmail) && <Logout />}

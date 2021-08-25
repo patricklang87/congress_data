@@ -12,7 +12,6 @@ export default function SubjectSearchBar() {
         const data = searchTerm;
         axios.get('http://localhost:4000/propublica/subjects', { params: data })
             .then(response => {
-                console.log("array1", response.data.results[0].subjects);
                 let subjects = response.data.results[0].subjects;
                 return subjects; 
             }).then(subjs => {

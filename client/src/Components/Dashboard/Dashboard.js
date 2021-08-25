@@ -51,11 +51,7 @@ export default function Dashboard() {
     return (
         
         <div className="Dashboard">     
-        
-        {/* <div className="dashnav" style={(navVisible) ? {display: "block"} : {display: "none"}}> */}
-        {/* <button onClick={isAuth}>Is Auth?</button> */}
-             {/* <DashNav /> */}
-        {/* </div>       */}
+            <h1>{currentDashFolder}</h1>
             <div className="dash-table">
                 {(currentDashFolder === 'Recent Bills') && <RecentBills />}
                 {(currentDashFolder === 'My Bills') && <MyBills />}

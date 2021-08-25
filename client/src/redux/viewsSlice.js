@@ -4,7 +4,7 @@ const viewsSlice = createSlice({
     name: "views",
     initialState: {
         legislatorView: 'senate',
-        dashFolder: 'Find Legislators',
+        dashFolder: 'Recent Bills',
         navVisible: true
     },
     reducers: {

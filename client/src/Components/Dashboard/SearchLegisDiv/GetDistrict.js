@@ -24,7 +24,6 @@ export default function SearchLegislators() {
         const data = { address, city, state, zip };
         axios.get('http://localhost:4000/district/legislators', { params: data })
             .then(response => {
-                console.log(response);
                 const divisionsData = response.data.divisions;
                 let divisions = Object.keys(divisionsData);
                 let division = '';
@@ -96,11 +95,12 @@ export default function SearchLegislators() {
                 <span style={{display: "inline"}} >&#10148;</span><span><strong> Find a District</strong></span>
             </div>
             <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
+                <button onClick={() => handleUseCurrentLocation()}>Use Current Location</button> <br />
                 <input onChange={(e) => handleChange(e)} value={address} placeholder="Street Address" name="address" type="text" /> <br />
                 <input onChange={(e) => handleChange(e)} value={city} placeholder="City" name="city" type="text" /> <br />
                 <input onChange={(e) => handleChange(e)} value={state} placeholder="State" name="state" type="text" /> <br />
                 <input onChange={(e) => handleChange(e)} value={zip} placeholder="Zip" name="zip" type="text" /> <br />
-                <button onClick={() => handleUseCurrentLocation()}>Use Current Location</button> <br />
+                
                 <button onClick={handleSubmit}>Find District</button>
                 <button onClick={handleClear}>Clear</button>    
             </div>

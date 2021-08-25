@@ -12,7 +12,6 @@ export default function SubjectPreviewCard({ subj }) {
 
     const handleTrack = () => {
         dispatch(addSubject(subj.name));
-        console.log('in handle track', subj.name)
         try {
             axios({
                 method: "PATCH",
@@ -23,7 +22,7 @@ export default function SubjectPreviewCard({ subj }) {
                 console.log(res.data);
             });
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setByTrackedSubjects, setTrackedSubjectBills, setAllSubjectBills, } from '../../redux/billsSlice';
 import axios from 'axios';
@@ -14,13 +14,11 @@ export default function RecentBills() {
     const [loading, setLoading] = useState(false);
     const trackedSubjects = useSelector(state => state.interests.subjects);
 
-    let currentBillSet = (byTrackedSubjects) ? trackedSubjectBills : allSubjectBills;
-
     useEffect(() => {
-        if (currentBillSet.length === 0) {
-            fetchRecentBills();
-        }
-    }, []);
+        if (trackedSubjects.length < 1) dispatch(setByTrackedSubjects(false));
+    }, [dispatch, trackedSubjects.length]);
+
+    let currentBillSet = (byTrackedSubjects) ? trackedSubjectBills : allSubjectBills;
 
     const fetchEndpoint = (byTrackedSubjects) ? 'billsByTrackedSubject' : 'recentBills';
 
@@ -33,11 +31,7 @@ export default function RecentBills() {
         trackedSubjectsQuery = trackedSubjectsQuery + item + ' ';
     }
 
-    console.log(trackedSubjectsQuery);
-
-    
-    const fetchRecentBills = () => {
-        currentBillSet = (byTrackedSubjects) ? trackedSubjectBills : allSubjectBills;
+    const fetchRecentBills = useCallback(() => {
         if (byTrackedSubjects === true) {
             dispatch(setTrackedSubjectBills([]));
         } else {
@@ -62,14 +56,14 @@ export default function RecentBills() {
         }).catch((err) => {
               console.log(err);
           }); 
-    }
-    
-    const handleSetToggle = () => {
-        dispatch(setByTrackedSubjects(!byTrackedSubjects));
+    }, [byTrackedSubjects, dispatch, fetchEndpoint, trackedSubjectsQuery]);
+
+    useEffect(() => {
         if (currentBillSet.length === 0) {
             fetchRecentBills();
         }
-    }
+    }, [currentBillSet.length, fetchRecentBills]);
+
 
     const recentBillDisplay = currentBillSet.map(bill => {
         return <RecentBillCard bill={bill} key={bill.bill_id} />
@@ -85,8 +79,6 @@ export default function RecentBills() {
 
     return (
         <div>
-            <button onClick={handleSetToggle}>{(byTrackedSubjects) ? "All" : "By Tracked"}</button>
-            <button onClick={fetchRecentBills} >Refresh</button>
             {(loading) ? <Loader /> : recentBillDisplay}
         </div>
 

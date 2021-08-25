@@ -34,6 +34,7 @@ export default function BillSponsorCard({ item }) {
     }
 
     const findSpecificMember = () => {
+        console.log("allSen", allSenators, allCongresspeople);
         let member;
         for (let senator of allSenators) {
             if (item.id === senator.id) {
@@ -69,7 +70,7 @@ export default function BillSponsorCard({ item }) {
     
     const handleTrack = async () => {
         const potentialCongresspeopleLoaded = await getAll();
-        const member = await findSpecificMember();
+        const member = await findSpecificMember(potentialCongresspeopleLoaded);
         saveMember(member);
     }
 

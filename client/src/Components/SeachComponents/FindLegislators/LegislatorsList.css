@@ -40,6 +40,7 @@
     width: 75px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .legislatorSearchCard p {
@@ -57,11 +58,13 @@
 }
 
 .legislatorSearchCard strong,
-.legislatorSearchCard i
+.legislatorSearchCard i,
+.legislatorSearchCard a
  {
     margin: 0;
     padding: 0;
-
+    text-decoration: none;
+    color: black
 }
 
 .searchCardButtons {
@@ -77,6 +80,29 @@
     display: flex;
     justify-content: center;
 }
+
+
+@media screen and (max-width: 1100px) {
+    .legislatorSearchDisplay {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .sideBySideButton {
+        display: none;
+    }
+
+    .legislatorChamberDisplayNonSBS {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        width: 544px;
+    }
+
+    .legisListFullWidth {
+        grid-column: 1 / span 1;
+    }
+  }
 
 
 @media screen and (max-width: 570px) {

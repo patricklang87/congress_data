@@ -14,7 +14,6 @@ export default function MyLegislators() {
         let fits = false;
         let searchTermComp1 = filterTerm.split(' ');
         for (let comp of searchTermComp1) {
-            console.log("component:", comp);
             if (item.first_name.toLowerCase().includes(comp.toLowerCase()) || item.last_name.toLowerCase().includes(comp.toLowerCase()) || item.state.toLowerCase().includes(comp.toLowerCase()) || item.district.includes(comp)) {
                 fits = true;
             }
@@ -71,14 +70,14 @@ export default function MyLegislators() {
 
     if (legislatorView === 'house' || legislatorView === 'sideBySide') {
         return (
-            <div className="legislatorSearchDisplay" style={(legislatorView !== "sideBySide") ? {width: '1088px'} : {}}>
+            <div className="legislatorSearchDisplay" >
                 <HouseD />
                 <SenateD />
             </div>
         );    
     } else if (legislatorView === 'senate') {
         return (
-            <div className="legislatorSearchDisplay" style={(legislatorView !== "sideBySide") ? {width: '1088px'} : {}}>
+            <div className="legislatorSearchDisplay">
                 <SenateD />
                 <HouseD />    
             </div>

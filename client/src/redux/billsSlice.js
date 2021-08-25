@@ -30,11 +30,14 @@ const billsSlice = createSlice({
             });
             state.bookmarkedBills = newBookmarkedBills;
         },
-        removeAllBookmarks: (state) => {
+        logoutReset: (state) => {
             state.bookmarkedBills = [];
+            state.byTrackedSubjects = true;
+            state.trackedSubjectBills = [];
+            state.allSubjectBills = [];
         }
     }
 });
 
-export const { setByTrackedSubjects, setTrackedSubjectBills, setAllSubjectBills, addBookmarkedBill, removeBookmarkedBill, removeAllBookmarks, setBookmarkedBills } = billsSlice.actions;
+export const { setByTrackedSubjects, setTrackedSubjectBills, setAllSubjectBills, addBookmarkedBill, removeBookmarkedBill, removeAllBookmarks, setBookmarkedBills, logoutReset} = billsSlice.actions;
 export default billsSlice.reducer

@@ -1,12 +1,12 @@
 .Dashboard {
     display: grid;
     width: 100%;
+    background-color: rgb(210, 236, 252);
 }
 
 
 
 .dash-table {
-    background-color: rgb(210, 236, 252);
     min-height: 700px;
 }
 

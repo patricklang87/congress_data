@@ -39,7 +39,6 @@ export default function MyLegisCard({ item }) {
     const handleImgError = (image) => {
         image.target.onError = "";
         image.target.src = NO_PIC;
-        console.log("imgsrc:", image.src);
         return true;
     }
 

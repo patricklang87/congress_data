@@ -16,7 +16,6 @@ export default function RecentVotes() {
             // withCredentials: true,
             url: "http://localhost:4000/propublica/recentVotes"
           }).then((res) => {
-            console.log(res.data);
             setLoading(false);
             setRecentVotes(res.data);
             

@@ -53,7 +53,6 @@ export default function LegisSearchCard({ item }) {
     const handleImgError = (image) => {
         image.target.onError = "";
         image.target.src = NO_PIC;
-        console.log("imgsrc:", image.src);
         return true;
     }
 
@@ -87,7 +86,7 @@ export default function LegisSearchCard({ item }) {
                 />
                 <div className="searchCardText">
                     <div>
-                        <p>{item.first_name} <strong>{item.last_name}</strong></p>
+                        <a href={item.url} rel="noreferrer" target="_blank"><p>{item.first_name} <strong>{item.last_name}</strong></p></a>
                         <p><small><i>{item.party}, {item.state}{item.district && "-"}{item.district}</i></small></p>
                     </div>
                     <div className="searchCardButtons" style={{ textAlign: "right"}}>

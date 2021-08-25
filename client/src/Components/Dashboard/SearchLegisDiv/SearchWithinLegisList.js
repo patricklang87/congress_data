@@ -58,16 +58,19 @@ const [navVisible, setNavVisible] = useState(true);
 
     return (
         <div>
-            <div onClick={toggleNavVisible}>
-                <span style={{display: "inline"}} >&#10148;</span><span><strong> Search Legislators</strong></span>
-            </div>
+            <button onClick={handleGetAll}>Get Legislators</button> <br />
+            <div>
+                <div onClick={toggleNavVisible}>
+                    <span style={{display: "inline"}} >&#10148;</span><span><strong> Search Legislators</strong></span>
+                </div>
 
-            <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
-                <input type="text" name="name" onChange={handleChange}  placeholder="Name" value={nameSearchTerm} /> <br />
-                <input type="text" name="state" onChange={handleChange}  placeholder="State" value={stateSearchTerm} /> <br />
-                <input type="text" name="district" onChange={handleChange} placeholder="District" value={districtSearchTerm} /> <br />
-                <button onClick={handleGetAll}>Get Legislators</button> <br /> 
-                <button onClick={handleClearFields}>Clear Fields</button>
+                <div className="dashNavOptions" style={(!navVisible) ? notVisible : visible}>
+                    <input type="text" name="name" onChange={handleChange}  placeholder="Name" value={nameSearchTerm} /> <br />
+                    <input type="text" name="state" onChange={handleChange}  placeholder="State Abbrev. (e.g. NY)" value={stateSearchTerm} /> <br />
+                    <input type="text" name="district" onChange={handleChange} placeholder="District" value={districtSearchTerm} /> <br />
+                    
+                    <button onClick={handleClearFields}>Clear Fields</button>
+                </div>
             </div>
         </div>
     );

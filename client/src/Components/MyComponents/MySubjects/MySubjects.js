@@ -16,9 +16,6 @@ export default function MySubjects() {
 
     return (
         <div>
-            <div>
-                <h1>Legislative Subjects</h1>
-            </div>
             <div className="SubjectsList">
                 {subjectsDisplay}
             </div>

@@ -27,7 +27,6 @@ export default function Login({ setShowingLogin }) {
             withCredentials: true,
             url: "http://localhost:4000/auth/login"
           }).then((res) => {
-            console.log(res);
             if (res.data.username && res.data.interests) {
                 dispatch(setCurrentUser(res.data.username));
                 dispatch(loadInterests(res.data.interests));

@@ -12,6 +12,10 @@ p, span, a {
   text-align: center;
 }
 
+input {
+  max-width: 135px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

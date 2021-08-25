@@ -13,7 +13,6 @@ export default function MyBills() {
 
     return (
         <div>
-            <button >Refresh</button>
             {recentBillDisplay}
         </div>
 

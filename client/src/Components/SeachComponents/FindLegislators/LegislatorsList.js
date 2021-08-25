@@ -15,14 +15,13 @@ export default function LegislatorsList() {
     
 
 // refactor this so that it searches names, states, and districts separately
-
+    console.log(house);
 
 
     const searchedHouse = house.filter(item => {
         let fits = false;
         let searchTermComp1 = nameSearchTerm.split(' ');
         for (let comp of searchTermComp1) {
-            console.log("component:", comp);
             if (item.first_name.toLowerCase().includes(nameSearchTerm.toLowerCase()) || item.last_name.toLowerCase().includes(nameSearchTerm.toLowerCase())) {
                 fits = true;
             }
@@ -70,8 +69,7 @@ export default function LegislatorsList() {
     let HouseD = (style) => {
         return (
             <div className={(legislatorView === 'house' || legislatorView === 'senate') ? 'legisListFullWidth' : ''}>
-                <h2>House</h2> 
-                       
+                <h2>House</h2>                     
                     <div className={(legislatorView !== "sideBySide") ? "legislatorChamberDisplayNonSBS" : "legislatorChamberDisplaySBS" }>    
                         {houseDisplay}
                     </div> 
