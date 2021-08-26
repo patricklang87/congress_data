@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const path = require('path');
+const port = process.env.PORT || 3000;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -9,6 +11,13 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('./schemes/user');
 require('dotenv').config();
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('../client/build'));
+    app.get('*', (req, res, next) => {
+        req.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+    })
+}
 
 //import routes:
 const auth = require('./routes/auth');
@@ -61,6 +70,7 @@ app.use('/propublica', propublica);
 app.use('/userData', userData);
 app.use('/scraper', scraper);
 
-app.listen(4000, () => {
-    console.log("Listening on Port 4000")
+app.listen(port, (err) => {
+    if (err) return console.log(err);
+    console.log(`Listening on Port ${port}`)
 });
