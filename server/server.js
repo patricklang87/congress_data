@@ -12,12 +12,7 @@ const session = require('express-session');
 const User = require('./schemes/user');
 require('dotenv').config();
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('../client/build'));
-    app.get('*', (req, res, next) => {
-        req.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-    })
-}
+
 
 //import routes:
 const auth = require('./routes/auth');
@@ -69,6 +64,13 @@ app.use('/district', district);
 app.use('/propublica', propublica);
 app.use('/userData', userData);
 app.use('/scraper', scraper);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+    app.get('*', (req, res, next) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    })
+}
 
 app.listen(port, (err) => {
     if (err) return console.log(err);

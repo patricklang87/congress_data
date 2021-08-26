@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7c788f89.chunk.css",
+    "main.js": "/static/js/main.5815e90a.chunk.js",
+    "main.js.map": "/static/js/main.5815e90a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ef743b82.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ef743b82.js.map",
+    "static/js/2.2d3a0c57.chunk.js": "/static/js/2.2d3a0c57.chunk.js",
+    "static/js/2.2d3a0c57.chunk.js.map": "/static/js/2.2d3a0c57.chunk.js.map",
+    "static/js/3.45ee11f1.chunk.js": "/static/js/3.45ee11f1.chunk.js",
+    "static/js/3.45ee11f1.chunk.js.map": "/static/js/3.45ee11f1.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.7c788f89.chunk.css.map": "/static/css/main.7c788f89.chunk.css.map",
+    "static/js/2.2d3a0c57.chunk.js.LICENSE.txt": "/static/js/2.2d3a0c57.chunk.js.LICENSE.txt",
+    "static/media/Authentication.css": "/static/media/capitol_velazquez_medium_cropped.0e749f2a.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ef743b82.js",
+    "static/js/2.2d3a0c57.chunk.js",
+    "static/css/main.7c788f89.chunk.css",
+    "static/js/main.5815e90a.chunk.js"
+  ]
+}
