@@ -5,7 +5,9 @@
 ## Screenshots
 
 ### Desktop
-![login](https://user-images.githubusercontent.com/73432960/132585738-5213db62-84b4-4963-addb-f6759479743b.JPG)
+
+<img src="https://user-images.githubusercontent.com/73432960/132585738-5213db62-84b4-4963-addb-f6759479743b.JPG" alt="login" width="400"/>
+
 ![find_legislators_nav](https://user-images.githubusercontent.com/73432960/132585690-57cfcd57-ef63-4432-802d-93c880f98f76.JPG)
 ![recent_bills_nav](https://user-images.githubusercontent.com/73432960/132585745-93b61dd1-6618-4647-ae40-a24b7149f2bb.JPG)
 
