@@ -60,6 +60,7 @@ To run the project locally:
 
 ## Future Updates
 
+- [ ] Deploy on Heroku.
 - [ ] Simplify dashboard navigation layout.
 - [ ] Create "Most Recent Votes" view for tracked legislators.
  
