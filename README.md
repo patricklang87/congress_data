@@ -4,16 +4,15 @@
 
 ## Screenshots
 
-###Desktop
+### Desktop
 ![login](https://user-images.githubusercontent.com/73432960/132585738-5213db62-84b4-4963-addb-f6759479743b.JPG)
 ![find_legislators_nav](https://user-images.githubusercontent.com/73432960/132585690-57cfcd57-ef63-4432-802d-93c880f98f76.JPG)
 ![recent_bills_nav](https://user-images.githubusercontent.com/73432960/132585745-93b61dd1-6618-4647-ae40-a24b7149f2bb.JPG)
 
 
-###Mobile
+### Mobile
 ![login_mobile](https://user-images.githubusercontent.com/73432960/132585762-97ef2377-3163-424e-9b8a-54562e101bed.JPG)
 ![my_legislators_mobile](https://user-images.githubusercontent.com/73432960/132585771-8ef15cc7-be4e-4d3f-b490-13eabca8dc14.JPG)
-![login_mobile](https://user-images.githubusercontent.com/73432960/132585775-5c9bb442-5d10-4c25-8139-f350eb753f66.JPG)
 
 ## Links
 
