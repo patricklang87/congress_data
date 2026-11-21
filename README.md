@@ -17,18 +17,63 @@
 
 ## Links
 
-- [Repo](https://github.com/patricklang87/congress_data "LegisTracker Repo") 
+- [Repo](https://github.com/patricklang87/congress_data "LegisTracker Repo")
+
+The app is not currently deployed.
+
+## Features
+
+- Find your senators and representative by address (Google Civic Information and MapQuest), or search by name, state and district
+- Track legislators and legislative subjects, and bookmark bills
+- Browse recent bills and votes from the ProPublica Congress API
+- Accounts with Passport.js sessions and bcrypt-hashed passwords
+
+## Project structure
+
+```
+├── server/
+│   ├── server.js          # Express app, sessions, Passport
+│   ├── passport-config.js # Local username/password strategy
+│   ├── validation.js      # Joi validation for register/login
+│   ├── routes/            # auth, userData (tracked interests), propublica, district, scraper
+│   └── schemes/user.js    # Mongoose user model
+└── client/                # Create React App front end (React, Redux Toolkit, React Router)
+```
 
 
 ## Run the project
 
 To run the project locally:
 
-- Clone the file.
-- Download all necessary dependencies into your project folder.
-- Create API keys for Google Civics API, ProPublical Congress API, and MapQuest API and save them in a dotenv file on the back end. 
-- Connect your backend to a MongoDB Database and save your access code to the dotenv file in the backend.
-- Run 'npm start' both in the server directory and in the client directory. The project will open at [http://localhost:3000](http://localhost:3000) in the browser. The page will reload if you make edits.
+1. Install dependencies in both folders:
+   ```bash
+   npm install --prefix server
+   npm install --prefix client
+   ```
+2. Create `server/.env`:
+   ```
+   PORT=4000
+   DB_CONNECT=<MongoDB connection string>
+   SESSION_SECRET=<any long random string>
+   GOOGLE_API_KEY=<Google Civic Information API key>
+   PROPUBLICA_KEY=<ProPublica Congress API key>
+   MAPQUEST_KEY=<MapQuest API key>
+   ```
+   The client calls the API at `http://localhost:4000`, so set `PORT=4000`.
+3. Run `npm start` in `server/` and in `client/`. The app opens at [http://localhost:3000](http://localhost:3000).
+
+The client uses Create React App 4. On Node 17+, `npm start` in `client/` needs `NODE_OPTIONS=--openssl-legacy-provider`.
+
+## Run the tests
+
+```bash
+npm test
+```
+
+- **Server** (Jest + Supertest): register/login validation, and the full Passport session flow (register, login, current user, logout) against an in-memory user model, plus tracking legislators, subjects and bookmarks.
+- **Client** (React Scripts / Jest): the search and tracked-interests Redux slices.
+
+Tests run on every push and pull request via GitHub Actions.
 
 ## Built with
 
@@ -56,6 +101,10 @@ To run the project locally:
 - @hapi/joi
 - Puppeteer
 
+### Testing
+- Jest
+- Supertest
+
 ## Database
 
 - MongoDB Cloud Atlas
@@ -73,7 +122,6 @@ To run the project locally:
 
 ## Future Updates
 
-- [ ] Deploy on Heroku.
 - [ ] Simplify dashboard navigation layout.
 - [ ] Create "Most Recent Votes" view for tracked legislators.
  
